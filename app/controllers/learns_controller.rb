@@ -17,7 +17,7 @@ class LearnsController < ApplicationController
     elsif params && params["type"] == "不動産の学び"
       @learns = Learn.where(learn_category_id: 4).includes(document_file_attachment: :blob, video_file_attachment: :blob).order(:order_num)
       @learn_category_custom = LearnCategory.find(4)
-    elsif params && params["type"] == "NISAの学び"
+    elsif params && params["type"] == "信用取引の学び"
       @learns = Learn.where(learn_category_id: 5).includes(document_file_attachment: :blob, video_file_attachment: :blob).order(:order_num)
       @learn_category_custom = LearnCategory.find(5)
     elsif params && params["type"] == "為替取引"

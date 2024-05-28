@@ -25,7 +25,7 @@ learn_categories = [
   { name: "株式取引の学び", created_at: Time.current, updated_at: nil},
   { name: "保険の学び", created_at: Time.current, updated_at: nil},
   { name: "不動産の学び", created_at: Time.current, updated_at: nil},
-  { name: "NISAの学び", created_at: Time.current, updated_at: nil},
+  { name: "信用取引の学び", created_at: Time.current, updated_at: nil},
   { name: "為替取引", created_at: Time.current, updated_at: nil}
 ]
 

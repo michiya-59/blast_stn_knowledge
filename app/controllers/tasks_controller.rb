@@ -23,7 +23,7 @@ class TasksController < ApplicationController
     when "real_estate"
       @title_label_name = "不動産の学び"
     when "nisa"
-      @title_label_name = "NISAの学び"
+      @title_label_name = "信用取引の学び"
     when "derivative"
       @title_label_name = "為替取引"
     end
