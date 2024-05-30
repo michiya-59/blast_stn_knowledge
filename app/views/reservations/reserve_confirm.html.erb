@@ -1,15 +1,15 @@
 <p class="pankuzu">
   <%= link_to 'トップページ', root_path, class: 'common_a' %> >
   <% if session[:search_seminars_year].present? && session[:search_seminars_month].present? %>
-    <%= link_to 'セミナー予約', reservations_path(search_year: session[:search_seminars_year], search_month: session[:search_seminars_month]), class: 'common_a' %> >
+    <%= link_to '講義予約', reservations_path(search_year: session[:search_seminars_year], search_month: session[:search_seminars_month]), class: 'common_a' %> >
   <% else %>
-    <%= link_to 'セミナー予約', reservations_path, class: 'common_a' %> >
+    <%= link_to '講義予約', reservations_path, class: 'common_a' %> >
   <% end %>
-  セミナー予約確認
+  講義予約確認
 </p>
 
 <div class="common_field_title">
-  <h1>セミナー予約確認</h1>
+  <h1>講義予約確認</h1>
   <div class="underline"></div>
 </div>
 <p class="confirm_text common_size16">セミナーに予約しますか？</p>

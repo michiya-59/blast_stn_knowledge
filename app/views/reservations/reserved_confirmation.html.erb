@@ -1,6 +1,6 @@
 <p class="pankuzu">
   <%= link_to 'トップページ', root_path, class: 'common_a' %> >
-  <%= link_to 'セミナー予約', reservations_path, class: 'common_a' %> >
+  <%= link_to '講義予約', reservations_path, class: 'common_a' %> >
   <% if session[:search_seminars_year].present? && session[:search_seminars_month].present? && session[:search_join_status].present? %>
     <%= link_to '予約状況一覧', reserved_list_reservations_path(search_year: session[:search_seminars_year], search_month: session[:search_seminars_month], join_status: session[:search_join_status]), class: 'common_a' %> >
   <% else %>
