@@ -3,7 +3,7 @@
 require "rails_helper"
 
 RSpec.describe Seminar, type: :model do
-  describe "セミナー登録のバリデーションテスト" do
+  describe "講義登録のバリデーションテスト" do
     let!(:seminar){create(:seminar)}
     context "全ての項目が正常な場合" do
       it "登録成功" do
@@ -106,11 +106,11 @@ RSpec.describe Seminar, type: :model do
       end
     end
   end
-  
+
   describe ".find_seminars" do
-    context "未来のセミナーを検索する場合" do
+    context "未来の講義を検索する場合" do
       let!(:current_seminar){FactoryBot.create(:seminar, year: Time.zone.now.year.to_i, month: Time.zone.now.month.to_i, day: Time.zone.now.day.to_i)}
-      it "未来のセミナーだけが取得される" do
+      it "未来の講義だけが取得される" do
         seminars = Seminar.find_seminars
         expect(seminars.map(&:id)).to include(current_seminar.id)
       end
@@ -118,10 +118,10 @@ RSpec.describe Seminar, type: :model do
   end
 
   describe ".search_by_year_and_month" do
-    context "特定の年月でセミナーを検索する場合" do
+    context "特定の年月で講義を検索する場合" do
       let!(:seminar_jan){FactoryBot.create(:seminar, year: Time.zone.now.year.to_i + 10, month: 1, day: 1)}
       let!(:seminar_feb){FactoryBot.create(:seminar, year: Time.zone.now.year.to_i + 10, month: 2, day: 1)}
-      it "指定した年月のセミナーだけが取得される" do
+      it "指定した年月の講義だけが取得される" do
         jan_seminars = Seminar.search_by_year_and_month(Time.zone.now.year.to_i + 10, 1)
         expect(jan_seminars).to include seminar_jan
         expect(jan_seminars).not_to include seminar_feb

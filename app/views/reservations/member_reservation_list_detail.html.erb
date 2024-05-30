@@ -1,11 +1,11 @@
 <p class="pankuzu">
   <%= link_to 'トップページ', root_path, class: 'common_a' %> >
   <%= link_to 'メンバー予約一覧', member_reservation_list_reservation_path(current_user), class: 'common_a' %> >
-  <%= "#{@chose_serminar&.year}年#{@chose_serminar&.month}月#{@chose_serminar&.day}日のセミナー メンバー予約一覧" %>
+  <%= "#{@chose_serminar&.year}年#{@chose_serminar&.month}月#{@chose_serminar&.day}日の講義 メンバー予約一覧" %>
 </p>
 <div class="admin_seminar_content">
   <div class="common_field_title">
-    <h1 class="sp_320_font_size"><%= "#{@chose_serminar&.year}年#{@chose_serminar&.month}月#{@chose_serminar&.day}日セミナー" %><br>メンバー予約一覧</h1>
+    <h1 class="sp_320_font_size"><%= "#{@chose_serminar&.year}年#{@chose_serminar&.month}月#{@chose_serminar&.day}日講義" %><br>メンバー予約一覧</h1>
     <div class="underline"></div>
   </div>
 
@@ -25,7 +25,7 @@
         <% end %>
       </div>
   <% else %>
-    <p class="fz-2 mt-2 sp_320_font_size"><%= "#{@chose_serminar&.year}年#{@chose_serminar&.month}月のセミナーに予約しているメンバーはいません。" %></p>
+    <p class="fz-2 mt-2 sp_320_font_size"><%= "#{@chose_serminar&.year}年#{@chose_serminar&.month}月の講義に予約しているメンバーはいません。" %></p>
   <% end %>
   </div>
   <%= link_to '戻る', member_reservation_list_reservation_path(current_user), class: 'common_btn_beige common_btn_beige_background common_btn_content common_merge' %>

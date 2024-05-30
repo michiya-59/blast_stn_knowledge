@@ -26,7 +26,7 @@ module ReservationsHelper
   end
 
   def is_previous_day? year, month, day, _start_time
-    # セミナーの日付を設定
+    # 講義の日付を設定
     seminar_date = Date.new(year.to_i, month.to_i, day.to_i)
 
     # 現在の日付を取得

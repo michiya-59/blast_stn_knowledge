@@ -6,20 +6,20 @@
   <% else %>
     <%= link_to '予約状況一覧', reserved_list_reservations_path, class: 'common_a' %> >
   <% end %>
-  セミナーキャンセル確認
+  講義キャンセル確認
 </p>
 <div class="common_field_title">
-  <h1>セミナーキャンセル</h1>
+  <h1>講義キャンセル</h1>
   <div class="underline"></div>
 </div>
-<p class="confirm_text common_size16">こちらのセミナーキャンセルしますか？</p>
+<p class="confirm_text common_size16">こちらの講義キャンセルしますか？</p>
 <div class="reservation_cancel_container common_list_title_background">
   <div class="common_list_title common_size20">
     <p>予約情報</p>
   </div>
   <div class="confirm_info">
     <div class="common_list_part common_size16">
-      <p>セミナー</p>
+      <p>講義</p>
       <p><%= @reservation.title %></p>
     </div>
     <div class="common_list_part common_size16">

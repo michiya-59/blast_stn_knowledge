@@ -90,7 +90,7 @@ ja:
         day: "日"
         start_time: "開始時間"
         end_time: "終了時間"
-        title: "セミナータイトル"
+        title: "講義タイトル"
         teacher: "講師"
       post:
         title: "タイトル"

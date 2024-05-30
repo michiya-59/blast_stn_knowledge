@@ -15,12 +15,12 @@ class CreateSeminars < ActiveRecord::Migration[7.0]
     end
 
     execute <<-SQL.squish
-      COMMENT ON COLUMN seminars.title IS 'セミナーのタイトル';
-      COMMENT ON COLUMN seminars.year IS 'セミナーの開催年';
-      COMMENT ON COLUMN seminars.month IS 'セミナーの開催月';
-      COMMENT ON COLUMN seminars.day IS 'セミナーの開催日';
-      COMMENT ON COLUMN seminars.start_time IS 'セミナーの開始時間';
-      COMMENT ON COLUMN seminars.end_time IS 'セミナーの終了時間';
+      COMMENT ON COLUMN seminars.title IS '講義のタイトル';
+      COMMENT ON COLUMN seminars.year IS '講義の開催年';
+      COMMENT ON COLUMN seminars.month IS '講義の開催月';
+      COMMENT ON COLUMN seminars.day IS '講義の開催日';
+      COMMENT ON COLUMN seminars.start_time IS '講義の開始時間';
+      COMMENT ON COLUMN seminars.end_time IS '講義の終了時間';
       COMMENT ON COLUMN seminars.teacher IS '講師の名前';
     SQL
   end

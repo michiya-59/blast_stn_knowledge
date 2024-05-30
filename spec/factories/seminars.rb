@@ -7,7 +7,7 @@ FactoryBot.define do
     day{Time.zone.now.day.to_i}
     start_time{"23:00"}
     end_time{"23:50"}
-    title{"テストセミナー"}
+    title{"テスト講義"}
     teacher{"テスト教授"}
   end
 end

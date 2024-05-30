@@ -17,7 +17,7 @@ module Admin
       @admin_seminar = Seminar.new(seminars_params)
       @admin_seminar = convert_datatime params, @admin_seminar
       if @admin_seminar.save
-        flash[:success] = "セミナー情報の作成が完了しました。"
+        flash[:success] = "講義情報の作成が完了しました。"
       else
         flash[:form_error] = @admin_seminar.errors.full_messages
       end
@@ -28,7 +28,7 @@ module Admin
       @seminar = convert_datatime params, @seminar
 
       if @seminar.update(seminars_params)
-        flash[:success] = "セミナー情報の更新が完了しました。"
+        flash[:success] = "講義情報の更新が完了しました。"
         if session[:admin_seminars_page].present? && session[:search_seminars_year] && session[:search_seminars_month]
           redirect_to admin_seminars_path(page: session[:admin_seminars_page], search_month: session[:search_seminars_month], search_year: session[:search_seminars_year])
         else
@@ -43,14 +43,14 @@ module Admin
     def destroy
       @seminar = Seminar.find(params[:id])
       if @seminar.destroy
-        flash[:delete_success] = "セミナー情報が削除されました。"
+        flash[:delete_success] = "講義情報が削除されました。"
         if session[:admin_seminars_page].present? && session[:search_seminars_year] && session[:search_seminars_month]
           redirect_to admin_seminars_path(page: session[:admin_seminars_page], search_month: session[:search_seminars_month], search_year: session[:search_seminars_year])
         else
           redirect_to admin_seminars_path
         end
       else
-        flash[:error] = "セミナー情報の削除に失敗しました。"
+        flash[:error] = "講義情報の削除に失敗しました。"
         redirect_to admin_seminars_path
       end
     end

@@ -128,7 +128,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_06_113354) do
 
   create_table "reservations", force: :cascade do |t|
     t.bigint "user_id", null: false, comment: "予約を行ったユーザーの一意識別子"
-    t.bigint "seminar_id", null: false, comment: "予約されたセミナーの一意識別子"
+    t.bigint "seminar_id", null: false, comment: "予約された講義の一意識別子"
     t.integer "join_status", default: 1, null: false, comment: "1: 未参加, 9: 参加済み"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -145,12 +145,12 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_06_113354) do
   end
 
   create_table "seminars", force: :cascade do |t|
-    t.string "title", null: false, comment: "セミナーのタイトル"
-    t.integer "year", null: false, comment: "セミナーの開催年"
-    t.integer "month", null: false, comment: "セミナーの開催月"
-    t.integer "day", null: false, comment: "セミナーの開催日"
-    t.string "start_time", null: false, comment: "セミナーの開始時間"
-    t.string "end_time", null: false, comment: "セミナーの終了時間"
+    t.string "title", null: false, comment: "講義のタイトル"
+    t.integer "year", null: false, comment: "講義の開催年"
+    t.integer "month", null: false, comment: "講義の開催月"
+    t.integer "day", null: false, comment: "講義の開催日"
+    t.string "start_time", null: false, comment: "講義の開始時間"
+    t.string "end_time", null: false, comment: "講義の終了時間"
     t.string "teacher", null: false, comment: "講師の名前"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

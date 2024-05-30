@@ -9,7 +9,7 @@ class ReservationsController < ApplicationController
   def create
     @seminar = Reservation.new(reserve_params)
     if @seminar.save
-      flash[:success] = "セミナーに予約しました。"
+      flash[:success] = "講義に予約しました。"
       redirect_to reservations_path
     else
       render :index
@@ -41,20 +41,20 @@ class ReservationsController < ApplicationController
   def destroy
     @reservation = Reservation.find(params[:id])
     @reservation.destroy
-    flash[:success] = "セミナーをキャンセルしました。"
+    flash[:success] = "講義をキャンセルしました。"
     redirect_to reserved_list_reservations_path
   end
 
   def member_reservation_list; end
 
   def member_reservation_list_detail
-    # 選択肢したセミナーの情報を取得
+    # 選択肢した講義の情報を取得
     @chose_serminar = Seminar.find params[:id]
     # 現在ログインしているユーザから派生している全ユーザのユーザIDを取得
     descendants = Relationship.find_descendants params[:parent_id]
     # 現在ログインしているユーザから派生している全ユーザが予約している予約情報を取得
     child_account_reservations = Reservation.get_child_accounts_reservations descendants
-    # 選択したセミナー情報を取得する
+    # 選択した講義情報を取得する
     @chose_serminars = child_account_reservations.select{|child_account_reservation| child_account_reservation.seminar_id == @chose_serminar&.id}
   end
 
@@ -81,14 +81,14 @@ class ReservationsController < ApplicationController
     params.require(:reservation).permit(:user_id, :seminar_id, :join_status)
   end
 
-  # セミナー実施時間が現在時刻より後の場合にjoin_statusを更新
+  # 講義実施時間が現在時刻より後の場合にjoin_statusを更新
   def update_join_status_if_necessary seminars
     seminars.each do |seminar|
       next unless seminar.join_status == 9
 
       # start_timeから時と分を抽出して整数に変換
       start_hour, start_minute = seminar.start_time.split(":").map(&:to_i)
-      # セミナー実施時間をDateTimeオブジェクトに変換
+      # 講義実施時間をDateTimeオブジェクトに変換
       seminar_time = Time.zone.local(seminar.year, seminar.month, seminar.day, start_hour, start_minute)
 
       # 現在時刻より後の場合にjoin_statusを1に更新

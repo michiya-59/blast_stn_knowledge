@@ -5,11 +5,11 @@
   >
   <%= link_to "管理画面", admin_path, class: "common_a"%>
   >
-  セミナー情報
+  講義情報
 </p>
 <div class="admin_seminar_add_contant">
   <div class="common_field_title">
-    <h1>セミナー登録</h1>
+    <h1>講義登録</h1>
     <div class="underline"></div>
   </div>
   <div class="admin_seminar_add">
@@ -31,7 +31,7 @@
         </div>
       </div>
       <div class="seminar_add_part" id="seminar_format">
-        <p>セミナー形式：</p>
+        <p>講義形式：</p>
         <div class="seminar_type_content">
           <%= form.radio_button :seminar_type, 0, id: 'seminar_type_face_to_face' %> 対面
         </div>
@@ -66,7 +66,7 @@
 
 <div class="admin_seminar_content">
   <div class="common_field_title">
-    <h1>セミナー登録一覧</h1>
+    <h1>講義登録一覧</h1>
     <div class="underline"></div>
   </div>
 
@@ -80,7 +80,7 @@
     <div class="common_list_head">
       <p class="w6"></p>
       <p class="w31 common_size16">日時</p>
-      <p class="w34 common_size16">セミナー形式</p>
+      <p class="w34 common_size16">講義形式</p>
       <p class="w39 common_size16">タイトル</p>
       <p class="w20 common_size16">講師</p>
     </div>
@@ -105,7 +105,7 @@
         <% starting_index += 1 %>
       <% end %>
     <% else %>
-      <p class="padding05 common_size13">一つもセミナー情報が登録されていません。</p>
+      <p class="padding05 common_size13">一つも講義情報が登録されていません。</p>
     <% end %>
   </div>
   <%= paginate @seminar_infos, theme: 'admin_serminar_custom_paginator', params: { search_year: @search_year, search_month: @search_month } %>  
