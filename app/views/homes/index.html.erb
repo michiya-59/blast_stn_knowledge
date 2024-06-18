@@ -55,13 +55,15 @@
       </div>
     <% end %>
   <% else %>
-    <%= link_to rewards_path(id: current_user&.id) do %>
-      <div class="menu_part common_btn_shape">
-        <div class="menu_icon">
-          <%= image_tag 'bonus.svg', alt: 'ボーナス情報のアイコン' %>
+    <% if current_user&.outsourcing_flg %>
+      <%= link_to rewards_path(id: current_user&.id) do %>
+        <div class="menu_part common_btn_shape">
+          <div class="menu_icon">
+            <%= image_tag 'bonus.svg', alt: 'ボーナス情報のアイコン' %>
+          </div>
+          <p class="common_size16">ボーナス情報</p>
         </div>
-        <p class="common_size16">ボーナス情報</p>
-      </div>
+      <% end %>
     <% end %>
   <% end %>
 
@@ -74,14 +76,14 @@
     </div>
   <% end %>
 
-  <%= link_to organizations_path do %>
-    <div class="menu_part common_btn_shape">
-      <div class="menu_icon">
-        <%= image_tag 'organization.svg', alt: '組織表のアイコン' %>
-      </div>
-      <p class="common_size16">組織表</p>
-    </div>
-  <% end %>
+  <%# <%= link_to organizations_path do %>
+    <%# <div class="menu_part common_btn_shape"> %>
+      <%# <div class="menu_icon"> %>
+        <%# <%= image_tag 'organization.svg', alt: '組織表のアイコン' %>
+      <%# </div> %>
+      <%# <p class="common_size16">組織表</p> %>
+    <%# </div> %>
+  <%# <% end %>
 
   <%= link_to connect_services_path do %>
     <div class="menu_part common_btn_shape">
