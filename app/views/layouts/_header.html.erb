@@ -10,11 +10,15 @@
           <li><%= link_to '組織表', organizations_path %></li>
           <li><%= link_to 'イベント情報', events_path %></li>
           <li><%= link_to '提携先', connect_services_path %></li>
-          <% if current_user&.admin_flg == 1 %>
-            <li><%= link_to 'ボーナス情報', user_list_rewards_path %></li>
-          <% else %>
-            <li><%= link_to 'ボーナス情報', rewards_path(id: current_user&.id) %></li>
+
+          <% if current_user&.outsourcing_flg %>
+            <% if current_user&.admin_flg == 1 %>
+              <li><%= link_to 'ボーナス情報', user_list_rewards_path %></li>
+            <% else %>
+              <li><%= link_to 'ボーナス情報', rewards_path(id: current_user&.id) %></li>
+            <% end %>
           <% end %>
+
           <li><%= link_to '紹介者一覧', introducers_path %></li>
           <li><%= link_to '登録情報', user_path(current_user) %></li>
           <% if current_user&.admin_flg == 1 %>
@@ -46,16 +50,18 @@
             </div>
           </li>
 
-          <li>
-            <% if current_user&.admin_flg == 1 %>
-              <%= link_to 'ボーナス情報', user_list_rewards_path %>
-            <% else %>
-              <%= link_to 'ボーナス情報', rewards_path(id: current_user&.id) %>
-            <% end %>
-            <div>
-              <%= image_tag 'hamburger_arrow.svg' %>
-            </div>
-          </li>
+          <% if current_user&.outsourcing_flg %>
+            <li>
+              <% if current_user&.admin_flg == 1 %>
+                <%= link_to 'ボーナス情報', user_list_rewards_path %>
+              <% else %>
+                <%= link_to 'ボーナス情報', rewards_path(id: current_user&.id) %>
+              <% end %>
+              <div>
+                <%= image_tag 'hamburger_arrow.svg' %>
+              </div>
+            </li>
+          <% end %>
 
           <li>
             <%= link_to '紹介者一覧', introducers_path %>

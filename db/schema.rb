@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_04_06_113354) do
+ActiveRecord::Schema[7.0].define(version: 2024_08_27_104105) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -248,6 +248,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_06_113354) do
     t.integer "failed_login_count", default: 0
     t.boolean "locked", default: false, null: false
     t.integer "incentive_id"
+    t.boolean "outsourcing_flg", default: false, null: false
     t.index ["email"], name: "index_users_on_email"
     t.index ["grade_id"], name: "index_users_on_grade_id"
     t.index ["login_id"], name: "index_users_on_login_id", unique: true

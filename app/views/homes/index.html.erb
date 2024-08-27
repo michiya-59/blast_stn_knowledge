@@ -45,23 +45,25 @@
     </div>
   <% end %>
 
-  <% if current_user&.admin_flg == 1 %>
-    <%= link_to user_list_rewards_path do %>
-      <div class="menu_part common_btn_shape">
-        <div class="menu_icon">
-          <%= image_tag 'bonus.svg', alt: 'ボーナス情報のアイコン' %>
+  <% if current_user&.outsourcing_flg %>
+    <% if current_user&.admin_flg == 1 %>
+      <%= link_to user_list_rewards_path do %>
+        <div class="menu_part common_btn_shape">
+          <div class="menu_icon">
+            <%= image_tag 'bonus.svg', alt: 'ボーナス情報のアイコン' %>
+          </div>
+          <p class="common_size16">ボーナス情報</p>
         </div>
-        <p class="common_size16">ボーナス情報</p>
-      </div>
-    <% end %>
-  <% else %>
-    <%= link_to rewards_path(id: current_user&.id) do %>
-      <div class="menu_part common_btn_shape">
-        <div class="menu_icon">
-          <%= image_tag 'bonus.svg', alt: 'ボーナス情報のアイコン' %>
+      <% end %>
+    <% else %>
+      <%= link_to rewards_path(id: current_user&.id) do %>
+        <div class="menu_part common_btn_shape">
+          <div class="menu_icon">
+            <%= image_tag 'bonus.svg', alt: 'ボーナス情報のアイコン' %>
+          </div>
+          <p class="common_size16">ボーナス情報</p>
         </div>
-        <p class="common_size16">ボーナス情報</p>
-      </div>
+      <% end %>
     <% end %>
   <% end %>
 
