@@ -23,6 +23,9 @@
     <% else%>
       <% if get_current_path.include?("login") %>
         <%= yield %>
+      <% elsif get_current_path.include?("expense")%>
+        <%= render 'layouts/expense_header' %>
+        <%= yield %>
       <% else %>
         <%= render 'layouts/header' %>
         <main>

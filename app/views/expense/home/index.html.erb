@@ -1,0 +1,103 @@
+<% content_for :js do %>
+  <%= javascript_import_module_tag "controllers/expense_search" %>
+<% end %>
+
+<div class="expense_nav_list">
+  <ul>
+    <li>
+      <%= link_to expense_home_index_path, class: "expense_nav_link" do %>
+        <div class="expense_icon">
+          <%= image_tag "expense_home" %>
+        </div>
+        <p>ホーム</p>
+      <% end %>
+    </li>
+
+    <li>
+      <%= link_to "#", class: "expense_nav_link" do %>
+        <div class="expense_icon">
+          <%= image_tag "expense_input" %>
+        </div>
+        <p>入力</p>
+      <% end %>
+    </li>
+
+    <li>
+      <%= link_to "#", class: "expense_nav_link" do %>
+        <div class="expense_icon">
+          <%= image_tag "expense_list" %>
+        </div>
+        <p>一覧</p>
+      <% end %>
+    </li>
+
+    <li>
+      <%= link_to "#", class: "expense_nav_link" do %>
+        <div class="expense_icon">
+          <%= image_tag "expense_category" %>
+        </div>
+        <p>カテゴリー</p>
+      <% end %>
+    </li>
+
+    <li>
+      <%= link_to "#", class: "expense_nav_link" do %>
+        <div class="expense_icon">
+          <%= image_tag "expense_report" %>
+        </div>
+        <p>レポート</p>
+      <% end %>
+    </li>
+  </ul>
+</div>
+
+<div class="expense_container">
+  <div class="expense_content">
+    <div class="expense_search">
+      <select id="month-select">
+        <% (1..12).each do |month| %>
+          <option value="<%= month %>" <%= 'selected' if month == @current_time.month %>><%= "#{month}月" %></option>
+        <% end %>
+      </select>
+
+      <div class="export_link">
+        <%= link_to "PDF出力", expense_home_export_pdf_path %>
+      </div>
+    </div>
+
+    <p class="expense_current_time">
+      <span><%= @current_time.month %>月</span>
+      の状況
+      <span>（現在：<%= "#{@current_time.month}月#{@current_time.day}日" %>）</span>
+    </p>
+
+    <div class="expense_detail">
+      <div class="expense_chart">
+        <%= column_chart({ "収入" => 500000, "支出" => 300000, "予想支出" => 400000 }, suffix: "円", height: "100%", width: "100%", colors: ["#76b041", "#ff5733", "#f4c242"]) %>
+      </div>
+
+      <div class="expense_value_list">
+        <div class="expense_value_item">
+          <p>収入</p>
+          <p>480,000円</p>
+        </div>
+
+        <div class="expense_value_item">
+          <p>収入</p>
+          <p>280,000円</p>
+        </div>
+
+        <div class="expense_value_item">
+          <p>収入</p>
+          <p>380,000円</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="expense_footer">
+  <p>copyright©️ BLAST All Right Reserved.</p>
+  <p><%= link_to "利用規約", term_path %></p>
+</div>

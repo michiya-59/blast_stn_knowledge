@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  namespace :expense do
+    get "home/index"
+    get "home/search"
+    get "home/export_pdf"
+  end
+
   get "learns/index"
   get "connect_services/index"
   root "homes#index"

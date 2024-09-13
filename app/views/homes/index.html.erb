@@ -27,6 +27,15 @@
 <% end %>
 
 <section class="menu_list">
+  <%= link_to expense_home_index_path do %>
+    <div class="menu_part common_btn_shape">
+      <div class="menu_icon">
+        <%= image_tag 'expense.png', alt: '支出管理システムのアイコン' %>
+      </div>
+      <p class="common_size16">支出管理</p>
+    </div>
+  <% end %>
+
   <%= link_to reservations_path do %>
     <div class="menu_part common_btn_shape">
       <div class="menu_icon">

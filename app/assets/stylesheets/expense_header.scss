@@ -1,0 +1,199 @@
+.expense_header {
+  display: flex;
+  position: relative;
+  padding: 20px 110px;
+  background: #4C76E7;
+
+  .expense_header_left{
+    font-size: 2.4rem;
+    font-weight: bold;
+    color: white;
+  }
+
+  .expense_header_right {
+    font-size: 2.4rem;
+    color: white;
+    margin-left: auto;
+    margin-right: 200px;
+  }
+
+  .arugo_kun_icon {
+    display: flex;
+    position: absolute;
+    right: 0;
+    margin-right: 100px;
+
+    .arugo_kun_message {
+      width: 125px;
+      height: 94px;
+
+      img {
+        height: 100%;
+      }
+    }
+
+    .arugo_kun {
+      width: 76px;
+      height: 143px;
+
+      img {
+        height: 100%;
+      }
+    }
+  }
+}
+
+.expense_nav_list {
+  ul {
+    display: flex;
+    width: 98rem;
+    box-shadow: 2px 2px 8px 2px #98989869;
+    padding: 20px;
+    margin: 25px auto;
+    gap: 0 25px;
+
+    li {
+      .expense_nav_link {
+        display: flex;
+        align-items: center;
+        position: relative;
+        text-decoration: none;
+        padding-bottom: 5px;
+
+        .expense_icon {
+          width: 3rem;
+          height: 3rem;
+          margin-right: 5px;
+
+          img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+
+        p {
+          font-size: 1.8rem;
+        }
+
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          right: 0;
+          width: 0;
+          height: 2px; /* 下線の太さ */
+          background-color: #4C76E7; /* 下線の色 */
+          transition: width 0.4s ease; /* アニメーションの速度と動き */
+        }
+
+        &:hover::after {
+          left: 0;
+          right: auto;
+          width: 100%; /* ホバー時に下線を100%幅まで広げる */
+        }
+      }
+    }
+  }
+}
+
+.expense_container {
+  margin: 0 auto 25px auto;
+  width: 98rem;
+  height: 57rem;
+  box-shadow: 2px 2px 8px 2px rgba(152, 152, 152, .4117647059);
+  padding: 3rem 5rem;
+}
+
+.expense_search {
+  display: flex;
+  justify-content: space-between;
+
+  select {
+    width: 10rem;
+    height: 3rem;
+    box-shadow: 0.5px 0.5px 6px 0.5px rgba(152, 152, 152, .4117647059);
+    border: 1px solid #e9e9e9;
+    padding: 3px 6px;
+    font-size: 1.6rem;
+  }
+
+  .export_link {
+    font-size: 1.8rem;
+    background-color: #4C76E7;
+    color: white;
+    width: 15.4rem;
+    height: 3.4rem;
+    border-radius: 5px;
+    text-align: center;
+    align-content: center;
+
+    a {
+      display: inline-block;
+    }
+  }
+}
+
+.expense_current_time {
+  font-size: 1.7rem;
+  margin-top: 3rem;
+
+  span:nth-child(1) {
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: #4C76E7;
+  }
+
+  span:nth-child(2) {
+    font-size: 1.7rem;
+    color: #686868;
+  }
+}
+
+.expense_detail {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 3.2rem;
+
+  .expense_chart {
+    width: 59rem;
+    height: 32rem;
+    border: 1px solid #C5C5C5;
+    padding: 3rem 3rem 2rem 2rem;
+  }
+}
+
+.expense_value_list {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem 0;
+
+  .expense_value_item {
+    width: 24rem;
+    height: 11rem;
+    box-shadow: 2px 2px 8px 2px rgba(152, 152, 152, 0.4117647059);
+    padding: 1.5rem 2rem;
+
+    p:nth-child(1) {
+      font-size: 2.4rem;
+      color: #686868;
+    }
+
+    p:nth-child(2) {
+      font-size: 3.5rem;
+      margin-top: 1rem;
+      color: #4C76E7;
+    }
+  }
+}
+
+.expense_footer {
+  margin: 0 auto;
+  width: 98rem;
+  box-shadow: 2px 2px 8px 2px rgba(152, 152, 152, 0.4117647059);
+  display: flex;
+  justify-content: space-between;
+  padding: 1.5rem;
+  color: #686868;
+  margin-bottom: 2.5rem;
+  font-size: 1.4rem;
+}
