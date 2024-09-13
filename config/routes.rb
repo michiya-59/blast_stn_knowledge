@@ -1,12 +1,6 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  namespace :expense do
-    get "home/index"
-    get "home/search"
-    get "home/export_pdf"
-  end
-
   get "learns/index"
   get "connect_services/index"
   root "homes#index"
@@ -104,6 +98,23 @@ Rails.application.routes.draw do
     resources :cap_adjust_ments, only: %i(index edit update create) do
       collection do
         get "cap_adjust_ments_search"
+      end
+    end
+  end
+
+  namespace :expense_module do
+    resources :home, only: %i(index) do
+      collection do
+        get "search"
+        get "export_pdf"
+      end
+    end
+    resources :expenses, only: %i(index new)
+    resources :expense_categories, only: %i(index edit update new create)
+    resources :income_categories, only: %i(index edit update new create)
+    resources :reports, only: %i(index) do
+      collection do
+        get "budget"
       end
     end
   end

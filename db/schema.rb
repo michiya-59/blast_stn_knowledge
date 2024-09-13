@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_08_27_104105) do
+ActiveRecord::Schema[7.0].define(version: 2024_09_13_124951) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -76,6 +76,24 @@ ActiveRecord::Schema[7.0].define(version: 2024_08_27_104105) do
     t.text "email"
   end
 
+  create_table "expense_categories", force: :cascade do |t|
+    t.string "name"
+    t.string "color_code"
+    t.decimal "expected_amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "expenses", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "expense_category_id", null: false
+    t.decimal "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["expense_category_id"], name: "index_expenses_on_expense_category_id"
+    t.index ["user_id"], name: "index_expenses_on_user_id"
+  end
+
   create_table "grades", force: :cascade do |t|
     t.string "grade_name", null: false, comment: "1：エグゼクティブ、2：ルビーエグゼクティブ、3：エメラルドエグゼクティグ"
     t.datetime "created_at", null: false
@@ -88,6 +106,22 @@ ActiveRecord::Schema[7.0].define(version: 2024_08_27_104105) do
     t.integer "incentive_price", null: false, comment: "初期値【100000：ノーマルコース、140000：アドバンス、30000；２ティア(ノーマル)、40000：２ティア（アドバンス）、10000：自組織３段目以降発生、15000：他系列契約時に発生、10000：ルビー、20000：エメラルド】"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "income_categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "incomes", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "income_category_id", null: false
+    t.decimal "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["income_category_id"], name: "index_incomes_on_income_category_id"
+    t.index ["user_id"], name: "index_incomes_on_user_id"
   end
 
   create_table "learn_categories", force: :cascade do |t|
@@ -267,6 +301,10 @@ ActiveRecord::Schema[7.0].define(version: 2024_08_27_104105) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "bonus_snapshots", "users"
   add_foreign_key "cap_adjustment_moneys", "users"
+  add_foreign_key "expenses", "expense_categories"
+  add_foreign_key "expenses", "users"
+  add_foreign_key "incomes", "income_categories"
+  add_foreign_key "incomes", "users"
   add_foreign_key "learns", "learn_categories"
   add_foreign_key "learns", "users"
   add_foreign_key "relationships", "users", column: "child_id"

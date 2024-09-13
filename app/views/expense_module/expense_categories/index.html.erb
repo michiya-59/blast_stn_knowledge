@@ -1,0 +1,48 @@
+<div class="expense_nav_list">
+  <ul>
+    <li>
+      <%= link_to expense_module_home_index_path, class: "expense_nav_link" do %>
+        <div class="expense_icon">
+          <%= image_tag "expense_home" %>
+        </div>
+        <p>ホーム</p>
+      <% end %>
+    </li>
+
+    <li>
+      <%= link_to new_expense_module_expense_path, class: "expense_nav_link" do %>
+        <div class="expense_icon">
+          <%= image_tag "expense_input" %>
+        </div>
+        <p>入力</p>
+      <% end %>
+    </li>
+
+    <li>
+      <%= link_to expense_module_expenses_path, class: "expense_nav_link" do %>
+        <div class="expense_icon">
+          <%= image_tag "expense_list" %>
+        </div>
+        <p>一覧</p>
+      <% end %>
+    </li>
+
+    <li>
+      <%= link_to expense_module_expense_categories_path, class: "expense_nav_link" do %>
+        <div class="expense_icon">
+          <%= image_tag "expense_category" %>
+        </div>
+        <p>カテゴリー</p>
+      <% end %>
+    </li>
+
+    <li>
+      <%= link_to expense_module_reports_path, class: "expense_nav_link" do %>
+        <div class="expense_icon">
+          <%= image_tag "expense_report" %>
+        </div>
+        <p>レポート</p>
+      <% end %>
+    </li>
+  </ul>
+</div>

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Expense
+module ExpenseModule
   class HomeController < ApplicationController
     def index
       @current_time = Time.current

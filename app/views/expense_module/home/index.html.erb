@@ -5,7 +5,7 @@
 <div class="expense_nav_list">
   <ul>
     <li>
-      <%= link_to expense_home_index_path, class: "expense_nav_link" do %>
+      <%= link_to expense_module_home_index_path, class: "expense_nav_link" do %>
         <div class="expense_icon">
           <%= image_tag "expense_home" %>
         </div>
@@ -14,7 +14,7 @@
     </li>
 
     <li>
-      <%= link_to "#", class: "expense_nav_link" do %>
+      <%= link_to new_expense_module_expense_path, class: "expense_nav_link" do %>
         <div class="expense_icon">
           <%= image_tag "expense_input" %>
         </div>
@@ -23,7 +23,7 @@
     </li>
 
     <li>
-      <%= link_to "#", class: "expense_nav_link" do %>
+      <%= link_to expense_module_expenses_path, class: "expense_nav_link" do %>
         <div class="expense_icon">
           <%= image_tag "expense_list" %>
         </div>
@@ -32,7 +32,7 @@
     </li>
 
     <li>
-      <%= link_to "#", class: "expense_nav_link" do %>
+      <%= link_to expense_module_expense_categories_path, class: "expense_nav_link" do %>
         <div class="expense_icon">
           <%= image_tag "expense_category" %>
         </div>
@@ -41,7 +41,7 @@
     </li>
 
     <li>
-      <%= link_to "#", class: "expense_nav_link" do %>
+      <%= link_to expense_module_reports_path, class: "expense_nav_link" do %>
         <div class="expense_icon">
           <%= image_tag "expense_report" %>
         </div>
@@ -61,7 +61,7 @@
       </select>
 
       <div class="export_link">
-        <%= link_to "PDF出力", expense_home_export_pdf_path %>
+        <%= link_to "PDF出力", expense_module_expense_categories_path %>
       </div>
     </div>
 
