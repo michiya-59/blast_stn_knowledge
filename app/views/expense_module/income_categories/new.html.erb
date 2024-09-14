@@ -1,2 +1,7 @@
-<h1>Expense::IncomeCategories#new</h1>
-<p>Find me in app/views/expense/income_categories/new.html.erb</p>
+<%= render "expense_module/layout/nav_list" %>
+
+<div class="expense_container">
+  <h2 class="expense_category_title">収入カテゴリー編集</h2>
+
+  <%= render 'form', income_category: @income_category %>
+</div>

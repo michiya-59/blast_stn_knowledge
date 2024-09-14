@@ -1,0 +1,17 @@
+<%= form_with model: income_category, url: income_category.new_record? ? expense_module_income_categories_path : expense_module_income_category_path(income_category), local: true do |form| %>
+  <div class="expense_category_form">
+    <div class="expense_category_field">
+      <%= form.label :name, "名前", class: "expense_category_label income" %>
+      <%= form.text_field :name, class: "expense_category_input", required: true %>
+    </div>
+  </div>
+
+  <div class="category_list_link">
+    <%= link_to "戻る", expense_module_income_categories_path %>
+    <%= form.submit "変更", class: "category_common_btn" %>
+
+    <% if !income_category.new_record? %>
+      <%= link_to "削除", expense_module_income_category_path(income_category), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "category_common_btn delete_btn" %>
+    <% end %>
+  </div>
+<% end %>

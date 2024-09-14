@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "line_notifier"
+require "active_support/core_ext/numeric/conversions"
 
 class ApplicationController < ActionController::Base
   include(SessionsHelper)

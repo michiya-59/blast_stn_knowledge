@@ -43,7 +43,12 @@ expense_category =[
   {name: "交際費", color_code: "#F65B5E", expected_amount: nil, created_at: Time.current, updated_at: Time.current}
 ]
 
+income_category = [
+  {name: "給与", created_at: Time.current, updated_at: Time.current}
+]
+
 # Incentive.create!(incentives)
 # LearnCategory.create!(learn_categories)
 # Grade.create!(grades)
 ExpenseCategory.create!(expense_category)
+IncomeCategory.create!(income_category)

@@ -5,13 +5,13 @@
   background: #4C76E7;
 
   .expense_header_left{
-    font-size: 2.4rem;
+    font-size: 2.1rem;
     font-weight: bold;
     color: white;
   }
 
   .expense_header_right {
-    font-size: 2.4rem;
+    font-size: 2.1rem;
     color: white;
     margin-left: auto;
     margin-right: 200px;
@@ -43,6 +43,19 @@
   }
 }
 
+.expense_flash {
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+}
+
+.expense_flash.notice {
+  color: green;
+}
+
+.expense_flash.alert {
+  color: #f44336;
+}
+
 .expense_nav_list {
   ul {
     display: flex;
@@ -51,6 +64,7 @@
     padding: 20px;
     margin: 25px auto;
     gap: 0 25px;
+    align-items: center;
 
     li {
       .expense_nav_link {
@@ -58,7 +72,7 @@
         align-items: center;
         position: relative;
         text-decoration: none;
-        padding-bottom: 5px;
+        padding-bottom: 4px;
 
         .expense_icon {
           width: 3rem;
@@ -72,9 +86,18 @@
         }
 
         p {
-          font-size: 1.8rem;
+          font-size: 1.6rem;
         }
+      }
 
+      .expense_nav_link.active {
+        border-bottom: 2px solid #4C76E7;
+      }
+
+      .expense_nav_link.active {
+      }
+
+      .expense_nav_link:not(.active) {
         &::after {
           content: '';
           position: absolute;
@@ -118,7 +141,7 @@
   }
 
   .export_link {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     background-color: #4C76E7;
     color: white;
     width: 15.4rem;
@@ -197,3 +220,181 @@
   margin-bottom: 2.5rem;
   font-size: 1.4rem;
 }
+
+// カテゴリー
+.category_common_btns {
+  display: flex;
+  gap: 0 1rem;
+}
+
+.category_common_btn {
+  display: flex;
+  gap: 0 1.6rem;
+
+}
+.category_common_btn.unactive {
+  background-color: #4c76e791;
+}
+
+.category_common_btn {
+  display: inline-block;
+  width: 8.4rem;
+  height: 3.4rem;
+  background: #4C76E7;
+  color: white;
+  font-size: 1.6rem;
+  border-radius: 5px !important;
+  text-align: center;
+  align-content: center;
+  border: none;
+}
+
+.budget_expense {
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+
+  p:nth-child(1) {
+    font-size: 1.4rem;
+    color: #686868;
+    margin-right: 1.5rem;
+  }
+
+  p:nth-child(2) {
+    font-size: 2rem;
+  }
+}
+
+.category_list {
+  margin: 2rem 0;
+  height: 35.7rem;
+  overflow-y: scroll;
+  width: 59%;
+
+  .category_item {
+    width: 49rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #c8c8c8;
+    padding: 1rem;
+
+    .category_item_left {
+      display: flex;
+      align-items: center;
+      width: 47%;
+
+      .category_color {
+        display: inline-block;
+        width: 1.7rem;
+        height: 1.7rem;
+        background-color: #3D9BFF;
+        border-radius: 50%;
+      }
+
+      p {
+        font-size: 1.7rem;
+        margin-left: 0.7rem;
+      }
+    }
+
+    .category_item_right {
+      width: 30%;
+
+      p {
+        font-size: 1.4rem;
+      }
+    }
+
+    .expense_category_arrow {
+      width: 1.1rem;
+      height: 1.7rem;
+      margin-left: auto;
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+
+  .not_expense_category {
+    font-size: 1.6rem;
+    color: #686868;
+  }
+}
+
+.category_list_link {
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0 1rem;
+
+  a:nth-child(1) {
+    font-size: 1.6rem;
+  }
+
+  a:nth-child(2) {
+    width: 15rem;
+  }
+}
+
+.expense_category_title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #686868;
+  margin-bottom: 2rem;
+}
+
+.expense_category_form {
+  margin-bottom: 3rem;
+}
+
+.expense_category_field {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+
+  .expense_category_label {
+    font-size: 1.8rem;
+    color: #686868;
+    width: 12rem;
+    display: inline-block;
+  }
+
+  .expense_category_label.income {
+    width: 7rem;
+  }
+
+  .expense_category_input {
+    padding: 0.8rem 2rem;
+    width: 27rem;
+    font-size: 1.8rem;
+  }
+
+  .expense_category_input.expected_amount {
+    padding-left: 3.5rem;
+  }
+
+  .expense_category_color {
+    width: 4rem;
+    height: 4rem;
+    display: inline-block;
+    border-radius: 50%;
+    padding: 0 2px;
+  }
+}
+
+.input_with_symbol {
+  position: relative;
+}
+
+
+.currency_symbol {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.8rem;
+}
+// カテゴリー

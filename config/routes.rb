@@ -110,8 +110,8 @@ Rails.application.routes.draw do
       end
     end
     resources :expenses, only: %i(index new)
-    resources :expense_categories, only: %i(index edit update new create)
-    resources :income_categories, only: %i(index edit update new create)
+    resources :expense_categories, only: %i(index edit update new create destroy)
+    resources :income_categories, only: %i(index edit update new create destroy)
     resources :reports, only: %i(index) do
       collection do
         get "budget"

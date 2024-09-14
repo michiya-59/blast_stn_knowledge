@@ -1,0 +1,30 @@
+<%= form_with model: expense_category, url: expense_category.new_record? ? expense_module_expense_categories_path : expense_module_expense_category_path(expense_category), local: true do |form| %>
+  <div class="expense_category_form">
+    <div class="expense_category_field">
+      <%= form.label :name, "名前", class: "expense_category_label" %>
+      <%= form.text_field :name, class: "expense_category_input", required: true %>
+    </div>
+
+    <div class="expense_category_field">
+      <%= form.label :expected_amount, "予想支出", class: "expense_category_label" %>
+
+      <div class="input_with_symbol">
+        <span class="currency_symbol">¥</span>
+        <%= form.number_field :expected_amount, class: "expense_category_input expected_amount", value: expense_category.expected_amount.to_i || 0 %>
+      </div>
+    </div>
+
+    <div class="expense_category_field">
+      <%= form.label :color_code, "グラフの色", class: "expense_category_label" %>
+      <%= form.color_field :color_code, class: "expense_category_color", required: true %>
+    </div>
+  </div>
+
+  <div class="category_list_link">
+    <%= link_to "戻る", expense_module_expense_categories_path %>
+    <%= form.submit "変更", class: "category_common_btn" %>
+    <% if !@expense_category.new_record? %>
+      <%= link_to "削除", expense_module_expense_category_path(expense_category), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "category_common_btn delete_btn" %>
+    <% end %>
+  </div>
+<% end %>

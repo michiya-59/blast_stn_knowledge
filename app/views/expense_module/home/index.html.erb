@@ -2,54 +2,7 @@
   <%= javascript_import_module_tag "controllers/expense_search" %>
 <% end %>
 
-<div class="expense_nav_list">
-  <ul>
-    <li>
-      <%= link_to expense_module_home_index_path, class: "expense_nav_link" do %>
-        <div class="expense_icon">
-          <%= image_tag "expense_home" %>
-        </div>
-        <p>ホーム</p>
-      <% end %>
-    </li>
-
-    <li>
-      <%= link_to new_expense_module_expense_path, class: "expense_nav_link" do %>
-        <div class="expense_icon">
-          <%= image_tag "expense_input" %>
-        </div>
-        <p>入力</p>
-      <% end %>
-    </li>
-
-    <li>
-      <%= link_to expense_module_expenses_path, class: "expense_nav_link" do %>
-        <div class="expense_icon">
-          <%= image_tag "expense_list" %>
-        </div>
-        <p>一覧</p>
-      <% end %>
-    </li>
-
-    <li>
-      <%= link_to expense_module_expense_categories_path, class: "expense_nav_link" do %>
-        <div class="expense_icon">
-          <%= image_tag "expense_category" %>
-        </div>
-        <p>カテゴリー</p>
-      <% end %>
-    </li>
-
-    <li>
-      <%= link_to expense_module_reports_path, class: "expense_nav_link" do %>
-        <div class="expense_icon">
-          <%= image_tag "expense_report" %>
-        </div>
-        <p>レポート</p>
-      <% end %>
-    </li>
-  </ul>
-</div>
+<%= render "expense_module/layout/nav_list" %>
 
 <div class="expense_container">
   <div class="expense_content">
@@ -97,7 +50,4 @@
 
 </div>
 
-<div class="expense_footer">
-  <p>copyright©️ BLAST All Right Reserved.</p>
-  <p><%= link_to "利用規約", term_path %></p>
-</div>
+<%= render "expense_module/layout/header" %>
