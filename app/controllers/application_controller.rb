@@ -158,4 +158,21 @@ class ApplicationController < ActionController::Base
 
     [difference_price, total_expenses_amount, total_incomes_amount]
   end
+
+  # カテゴリーごとの支出額と色を取得するメソッド
+  def category_expenses_with_colors user_id, start_date, end_date
+    expenses = Expense.where(user_id: user_id, add_date: start_date..end_date).includes(:expense_category)
+    expenses_by_category = expenses.group(:expense_category_id).sum(:amount)
+
+    chart_data = []
+    chart_colors = []
+
+    expenses_by_category.each do |category_id, total_amount|
+      category = ExpenseCategory.find(category_id)
+      chart_data << [category.name, total_amount]
+      chart_colors << category.color_code # color_codeを取得
+    end
+
+    [chart_data, chart_colors]
+  end
 end

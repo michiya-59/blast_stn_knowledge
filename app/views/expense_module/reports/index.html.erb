@@ -1,2 +1,62 @@
-<h1>Expense::Reports#index</h1>
-<p>Find me in app/views/expense/reports/index.html.erb</p>
+<%= render "expense_module/layout/nav_list" %>
+
+<div class="expense_container">
+  <div class="category_common_btns margin_zero">
+    <%= link_to "レポート", expense_module_reports_path, class: "category_common_btn #{'unactive' unless current_page?(expense_module_reports_path)}" %>
+    <%= link_to "予算", budget_expense_module_reports_path, class: "category_common_btn #{'unactive' unless current_page?(budget_expense_module_reports_path)}" %>
+  </div>
+
+  <div class="expense_index_top reports">
+    <div class="expense_index_middle_budget">
+      <span><%= Time.current.year %>年</span>
+      <span><%="#{@start_of_month.month}月#{@start_of_month.day}日 〜 #{@end_of_month.month}月#{@end_of_month.day}日" %></span>
+    </div>
+  </div>
+
+  <div class="expense_reports_content">
+    <div class="expense_reports_content_left">
+      <div class="expense_reports_item left_top">
+        <span>支出</span>
+        <span class="amount_price_minus">
+          ¥ - <%= number_with_delimiter(@total_expenses_amount.to_i) %>
+        </span>
+      </div>
+
+      <div class="expense_reports_item left_bottom">
+        <span>予想支出</span>
+        <span>
+          ¥ <%= number_with_delimiter(@total_expected_amount.to_i) %>
+        </span>
+      </div>
+    </div>
+
+    <div class="expense_reports_content_right">
+      <div class="expense_reports_item right_top">
+        <span>収入</span>
+        <span class="amount_price_blue">
+          ¥ + <%= number_with_delimiter(@total_incomes_amount.to_i) %>
+        </span>
+      </div>
+
+      <div class="expense_reports_item right_bottom">
+        <span>収支</span>
+        <span class="<%= @difference_price.to_i >= 0 ? 'amount_price_plus' : 'amount_price_minus' %>">
+          ¥ + <%= number_with_delimiter(@difference_price.to_i) %>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="expense_reports_budget">
+    <span>残り総資産</span>
+    <span class="<%= @difference_price.to_i >= 0 ? 'amount_price_plus' : 'amount_price_minus' %>">
+      ¥ <%= formatted_amount_with_sign @difference_price %>
+    </span>
+  </div>
+
+  <div class="expense_pie_chart">
+    <%= pie_chart @chart_data, colors: @chart_colors, height: "100%", width: "100%", prefix: "¥", thousands: "," %>
+  </div>
+</div>
+
+<%= render "expense_module/layout/header" %>

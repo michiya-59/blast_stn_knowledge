@@ -62,11 +62,27 @@ module ApplicationHelper
   end
 
   def formatted_amount_with_sign amount
-    if amount >= 0
+    return amount if amount == 0
+
+    if amount > 0
       "+  #{number_with_delimiter(amount.abs.to_i)}"
     else
       # マイナス記号を取り除き、空白を追加して表示
       "-  #{number_with_delimiter(amount.abs.to_i)}"
     end
+  end
+
+  # 予想支出と支出の差額を求めるメソッド
+  def expense_budget_price total_amount, expected_amount
+    budget_price = expected_amount - total_amount
+    return formatted_amount_with_sign budget_price
+  end
+
+  def expense_reports_budget_price total_amount, expected_amount
+    budget_price = expected_amount - total_amount
+
+    return "" if budget_price == 0
+    return "amount_price_plus" if budget_price > 0
+    return "amount_price_minus" if budget_price < 0
   end
 end

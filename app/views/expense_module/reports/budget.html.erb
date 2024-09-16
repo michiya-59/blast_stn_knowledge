@@ -1,0 +1,42 @@
+<%= render "expense_module/layout/nav_list" %>
+
+<div class="expense_container">
+  <div class="category_common_btns margin_zero">
+    <%= link_to "レポート", expense_module_reports_path, class: "category_common_btn #{'unactive' unless current_page?(expense_module_reports_path)}" %>
+    <%= link_to "予算", budget_expense_module_reports_path, class: "category_common_btn #{'unactive' unless current_page?(budget_expense_module_reports_path)}" %>
+  </div>
+
+  <div class="expense_budget_content">
+    <ul class="expense_budget_header">
+      <li>カテゴリー</li>
+      <li>支出</li>
+      <li>予想支出</li>
+      <li>差額</li>
+    </ul>
+
+    <div class="expense_budget_data">
+      <% @expense_data.each do |data| %>
+        <div class="expense_budget_item">
+          <div class="expense_budget_item1">
+            <span style="background-color:<%= data[:category].color_code %>"></span>
+            <span><%= data[:category].name %></span>
+          </div>
+
+          <div class="expense_budget_item3">
+            ¥ <%= number_with_delimiter(data[:total_amount].to_i) %>
+          </div>
+
+          <div class="expense_budget_item2">
+            ¥ <%= number_with_delimiter(data[:expected_amount].to_i) %>
+          </div>
+
+          <div class="expense_budget_item4 <%= expense_reports_budget_price(data[:total_amount].to_i, data[:expected_amount].to_i) %>">
+            ¥ <%= number_with_delimiter(expense_budget_price data[:total_amount].to_i, data[:expected_amount].to_i) %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<%= render "expense_module/layout/header" %>

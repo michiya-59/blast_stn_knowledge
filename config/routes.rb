@@ -118,6 +118,7 @@ Rails.application.routes.draw do
         get "budget"
       end
     end
+    resources :report, only: %i(index)
   end
 
   match "/404", to: "errors#not_found", via: :all
