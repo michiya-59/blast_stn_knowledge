@@ -2,7 +2,7 @@
   <div class="expense_category_form">
     <div class="expense_category_field">
       <%= form.label :name, "名前", class: "expense_category_label" %>
-      <%= form.text_field :name, class: "expense_category_input", required: true %>
+      <%= form.text_field :name, class: "expense_category_input #{'disabled_category' if @expense_category.user_id == 99999}", required: true, disabled: (@expense_category.user_id == 99999) %>
     </div>
 
     <div class="expense_category_field">
@@ -23,8 +23,11 @@
   <div class="category_list_link">
     <%= link_to "戻る", expense_module_expense_categories_path %>
     <%= form.submit "変更", class: "category_common_btn" %>
-    <% if !@expense_category.new_record? %>
-      <%= link_to "削除", expense_module_expense_category_path(expense_category), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "category_common_btn delete_btn" %>
+
+    <% if expense_category.present? && expense_category.user_id.to_i != 99999 %>
+      <% if !@expense_category.new_record? %>
+        <%= link_to "削除", expense_module_expense_category_path(expense_category), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "category_common_btn delete_btn" %>
+      <% end %>
     <% end %>
   </div>
 <% end %>

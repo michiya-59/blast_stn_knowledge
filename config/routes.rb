@@ -109,7 +109,8 @@ Rails.application.routes.draw do
         get "export_pdf"
       end
     end
-    resources :expenses, only: %i(index new)
+    resources :expenses, only: %i(index new create)
+    resources :incomes, only: %i(index new create)
     resources :expense_categories, only: %i(index edit update new create destroy)
     resources :income_categories, only: %i(index edit update new create destroy)
     resources :reports, only: %i(index) do

@@ -26,24 +26,24 @@
     </div>
 
     <div class="expense_index_bottom">
-      <% @expenses_by_date.each do |date, expenses| %>
+      <% @incomes_by_date.each do |date, incomes| %>
         <!-- 日付ごとの合計金額 -->
         <div class="date-header">
           <span><%= date.strftime("%-d日") %> (<%= Expense::JAPANESE_WEEKDAYS[date.wday] %>)</span>
-          <span>¥  <%= number_with_delimiter(expenses.sum(&:amount).to_i) %></span>
+          <span>¥  <%= number_with_delimiter(incomes.sum(&:amount).to_i) %></span>
         </div>
 
         <!-- 各支出の詳細 -->
-        <% expenses.each do |expense| %>
+        <% incomes.each do |income| %>
           <div class="expense-item">
-            <span class="expense-amount">
-              ¥ - <%= number_with_delimiter(expense.amount.to_i) %>
+            <span class="expense-amount amount_price_plus">
+              ¥ + <%= number_with_delimiter(income.amount.to_i) %>
             </span>
             <span class="expense-category">
-              <%= expense.expense_category.name %>
+              <%= income.income_category.name %>
             </span>
             <span class="expense-date">
-              <%= expense.add_date.strftime("%Y/%m/%d") %>
+              <%= income.add_date.strftime("%Y/%m/%d") %>
             </span>
           </div>
           <hr>

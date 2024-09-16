@@ -60,4 +60,13 @@ module ApplicationHelper
       "ラグジュアリーコース"
     end
   end
+
+  def formatted_amount_with_sign amount
+    if amount >= 0
+      "+  #{number_with_delimiter(amount.abs.to_i)}"
+    else
+      # マイナス記号を取り除き、空白を追加して表示
+      "-  #{number_with_delimiter(amount.abs.to_i)}"
+    end
+  end
 end

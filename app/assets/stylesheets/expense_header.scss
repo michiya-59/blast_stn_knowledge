@@ -56,6 +56,10 @@
   color: #f44336;
 }
 
+.disabled_category {
+  background-color: #e1e1e1a6;
+}
+
 .expense_nav_list {
   ul {
     display: flex;
@@ -225,6 +229,7 @@
 .category_common_btns {
   display: flex;
   gap: 0 1rem;
+  margin-bottom: 2rem;
 }
 
 .category_common_btn {
@@ -250,7 +255,6 @@
 }
 
 .budget_expense {
-  margin-top: 2rem;
   display: flex;
   align-items: center;
 
@@ -355,15 +359,27 @@
   align-items: center;
   margin-bottom: 1.5rem;
 
-  .expense_category_label {
+  .expense_category_label, .expense_label {
     font-size: 1.8rem;
     color: #686868;
     width: 12rem;
     display: inline-block;
   }
 
-  .expense_category_label.income {
+  .expense_category_label.income, .expense_label.income {
     width: 7rem;
+  }
+
+  .expense_category_label.expense_red, .expense_label.expense_red {
+    color: #f44336;
+  }
+
+  .expense_category_label.income_green, .expense_label.income_green {
+    color: #71C054;
+  }
+
+  .expense_label {
+    width: 9rem;
   }
 
   .expense_category_input {
@@ -383,6 +399,14 @@
     border-radius: 50%;
     padding: 0 2px;
   }
+
+  .expense_category_select {
+    padding: .8rem 2rem;
+    width: 27rem;
+    font-size: 1.8rem;
+    border: 1px solid #afafaf;
+    border-radius: .3rem !important;
+  }
 }
 
 .input_with_symbol {
@@ -398,3 +422,106 @@
   font-size: 1.8rem;
 }
 // カテゴリー
+
+// 一覧
+.expense_index_top {
+  display: flex;
+  width: 38rem;
+  margin: 0 auto;
+  font-size: 1.6rem;
+  justify-content: space-between;
+  align-items: center;
+
+  .expense_index_left_budget {
+    span:nth-child(1) {
+      color: #686868;
+      margin-bottom: 0.7rem;
+      display: inline-block;
+    }
+
+    span:nth-child(3) {
+      color: #71C054;
+    }
+  }
+
+  .expense_index_middle_budget {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-size: 2rem;
+    color: #686868;
+
+    span:nth-child(1) {
+      font-weight: bold;
+    }
+  }
+
+  .expense_index_right_budget {
+    display: flex;
+    flex-direction: column;
+    font-size: 1.6rem;
+
+    span:nth-child(1) {
+      color: #E24444;
+      margin-bottom: 0.7rem;
+      display: inline-block;
+    }
+
+    span:nth-child(2) {
+      color: #71C054;
+    }
+  }
+}
+
+.amount_price_plus {
+  color: #71C054 !important;
+}
+
+.amount_price_minus {
+  color: #E24444 !important;
+}
+
+.expense_index_bottom {
+  margin: 2rem auto;
+  height: 36rem;
+  overflow-y: scroll;
+  width: 60rem;
+
+  .date-header {
+    padding: 1rem 2rem;
+    font-size: 1.6rem;
+    background-color: #EFEFEF;
+
+    span:nth-child(1) {
+      margin-right: 1rem;
+    }
+  }
+
+  .expense-item {
+    font-size: 1.6rem;
+    padding: 1rem 1.5rem;
+
+    .expense-amount {
+      color: #E24444;
+      width: 26%;
+      display: inline-block;
+    }
+
+    .expense-category {
+      color: #686868;
+      margin-right: 13rem;
+      width: 30%;
+      display: inline-block;
+    }
+
+    .expense-date {
+      color: #686868;
+      margin-left: auto;
+    }
+
+  }
+  hr {
+    color: #CDCDCD;
+  }
+}
+// 一覧

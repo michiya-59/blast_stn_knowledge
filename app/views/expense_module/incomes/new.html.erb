@@ -3,10 +3,10 @@
 <div class="expense_container">
   <div class="category_common_btns">
     <%= link_to "支出", new_expense_module_expense_path, class: "category_common_btn #{'unactive' unless current_page?(new_expense_module_expense_path)}" %>
-    <%= link_to "収入", new_expense_module_income_path, class: "category_common_btn #{'unactive' unless current_page?(expense_module_income_categories_path)}" %>
+    <%= link_to "収入", new_expense_module_income_path, class: "category_common_btn #{'unactive' unless current_page?(new_expense_module_income_path)}" %>
   </div>
 
-  <h2 class="expense_category_title">支出入力</h2>
+  <h2 class="expense_category_title">収入入力</h2>
 
   <% if notice %>
     <div class="expense_flash notice">
@@ -20,5 +20,5 @@
     </div>
   <% end %>
 
-  <%= render 'form', expense: @expense %>
+  <%= render 'form', income: @income %>
 </div>

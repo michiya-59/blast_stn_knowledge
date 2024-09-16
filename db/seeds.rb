@@ -31,20 +31,20 @@ learn_categories = [
 
 # 支出カテゴリー
 expense_category =[
-  {name: "衣服", color_code: "#3D9BFF", expected_amount: nil, created_at: Time.current, updated_at: Time.current},
-  {name: "趣味", color_code: "#A325C6", expected_amount: nil, created_at: Time.current, updated_at: Time.current},
-  {name: "交通費", color_code: "#CD6000", expected_amount: nil, created_at: Time.current, updated_at: Time.current},
-  {name: "日用品", color_code: "#25C632", expected_amount: nil, created_at: Time.current, updated_at: Time.current},
-  {name: "美容費", color_code: "#FF006E", expected_amount: nil, created_at: Time.current, updated_at: Time.current},
-  {name: "教育費", color_code: "#93B55F", expected_amount: nil, created_at: Time.current, updated_at: Time.current},
-  {name: "水道光熱費", color_code: "#48D7FF", expected_amount: nil, created_at: Time.current, updated_at: Time.current},
-  {name: "通信費", color_code: "#B5B5B5", expected_amount: nil, created_at: Time.current, updated_at: Time.current},
-  {name: "住居費", color_code: "#FFC635", expected_amount: nil, created_at: Time.current, updated_at: Time.current},
-  {name: "交際費", color_code: "#F65B5E", expected_amount: nil, created_at: Time.current, updated_at: Time.current}
+  {name: "衣服", color_code: "#3D9BFF", expected_amount: nil, user_id: 99999, created_at: Time.current, updated_at: Time.current},
+  {name: "趣味", color_code: "#A325C6", expected_amount: nil, user_id: 99999, created_at: Time.current, updated_at: Time.current},
+  {name: "交通費", color_code: "#CD6000", expected_amount: nil, user_id: 99999, created_at: Time.current, updated_at: Time.current},
+  {name: "日用品", color_code: "#25C632", expected_amount: nil, user_id: 99999, created_at: Time.current, updated_at: Time.current},
+  {name: "美容費", color_code: "#FF006E", expected_amount: nil, user_id: 99999, created_at: Time.current, updated_at: Time.current},
+  {name: "教育費", color_code: "#93B55F", expected_amount: nil, user_id: 99999, created_at: Time.current, updated_at: Time.current},
+  {name: "水道光熱費", color_code: "#48D7FF", expected_amount: nil, user_id: 99999, created_at: Time.current, updated_at: Time.current},
+  {name: "通信費", color_code: "#B5B5B5", expected_amount: nil, user_id: 99999, created_at: Time.current, updated_at: Time.current},
+  {name: "住居費", color_code: "#FFC635", expected_amount: nil, user_id: 99999, created_at: Time.current, updated_at: Time.current},
+  {name: "交際費", color_code: "#F65B5E", expected_amount: nil, user_id: 99999, created_at: Time.current, updated_at: Time.current}
 ]
 
 income_category = [
-  {name: "給与", created_at: Time.current, updated_at: Time.current}
+  {name: "給与", created_at: Time.current, user_id: 99999, updated_at: Time.current}
 ]
 
 # Incentive.create!(incentives)

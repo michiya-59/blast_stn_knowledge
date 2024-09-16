@@ -113,4 +113,49 @@ class ApplicationController < ActionController::Base
       render_500(exception)
     end
   end
+
+  # 汎用的なカテゴリの統合メソッド
+  def combined_categories_for model_class, user_id
+    default_categories = fetch_default_categories(model_class)
+    user_categories = fetch_user_categories(model_class, user_id)
+
+    # ユーザーのカテゴリーをハッシュ化
+    user_categories_hash = user_categories.index_by(&:name)
+
+    # デフォルトカテゴリーにユーザーのカテゴリーをマージ
+    combined_categories = default_categories.map do |default_category|
+      user_categories_hash[default_category.name] || default_category
+    end
+
+    # ユーザー独自のカテゴリーを追加
+    combined_categories += user_categories.reject{|category| default_categories.map(&:name).include?(category.name)}
+
+    combined_categories
+  end
+
+  # デフォルトカテゴリーの取得
+  def fetch_default_categories model_class
+    model_class.where(user_id: 99_999)
+  end
+
+  # 現在のユーザーのカテゴリーを取得
+  def fetch_user_categories model_class, user_id
+    model_class.where(user_id:)
+  end
+
+  def calculate_difference_price user_id, current_month_start, current_month_end
+    # 今月のユーザーの支出を取得（N+1クエリ防止のため includes を使用）
+    total_expenses_amount = Expense.where(user_id:, add_date: current_month_start..current_month_end)
+      .includes(:expense_category)
+      .sum(:amount)
+
+    # 今月のユーザーの収入を取得（N+1クエリ防止のため includes を使用）
+    total_incomes_amount = Income.where(user_id:, add_date: current_month_start..current_month_end)
+      .includes(:income_category)
+      .sum(:amount)
+    # 差額を計算
+    difference_price = total_incomes_amount.to_i - total_expenses_amount.to_i
+
+    [difference_price, total_expenses_amount, total_incomes_amount]
+  end
 end
