@@ -24,10 +24,17 @@ module ExpenseModule
       selected_year = @current_time.year
 
       @selected_month = if params[:month].present?
-                          Time.zone.local(@current_time.year, params[:month].to_i, 1)
-                        else
-                          @current_time
-                        end
+        if params[:month].to_i == @current_time.month
+          # 現在の月であれば、日にちを現在の日にちにする
+          Time.zone.local(@current_time.year, params[:month].to_i, @current_time.day)
+        else
+          # 現在の月でなければ、1日にする
+          Time.zone.local(@current_time.year, params[:month].to_i, 1)
+        end
+      else
+        # params[:month]がない場合は現在の時刻を使う
+        @current_time
+      end
 
       expense_categories = combined_categories_for(ExpenseCategory, current_user.id)
       # 予想支出の合計
