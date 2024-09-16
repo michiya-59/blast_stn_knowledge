@@ -7,11 +7,9 @@
 <div class="expense_container">
   <div class="expense_content">
     <div class="expense_search">
-      <select id="month-select">
-        <% (1..12).each do |month| %>
-          <option value="<%= month %>" <%= 'selected' if month == @current_time.month %>><%= "#{month}月" %></option>
-        <% end %>
-      </select>
+      <%= form_with url: search_expense_module_home_index_path, method: :get, local: true, id: "month-form" do |form| %>
+        <%= form.select :month, (1..12).map { |month| [ "#{month}月", month ] }, { selected: @selected_month.month }, { id: "month-select" } %>
+      <% end %>
 
       <div class="export_link">
         <%= link_to "PDF出力", expense_module_expense_categories_path %>
@@ -19,30 +17,43 @@
     </div>
 
     <p class="expense_current_time">
-      <span><%= @current_time.month %>月</span>
+      <span><%= @selected_month.month %>月</span>
       の状況
-      <span>（現在：<%= "#{@current_time.month}月#{@current_time.day}日" %>）</span>
+
+      <% if @current_time.month == @selected_month.month %>
+        <span>（現在：<%= "#{@selected_month.month}月#{@selected_month.day}日" %>）</span>
+      <% end %>
     </p>
 
     <div class="expense_detail">
       <div class="expense_chart">
-        <%= column_chart({ "収入" => 500000, "支出" => 300000, "予想支出" => 400000 }, suffix: "円", height: "100%", width: "100%", colors: ["#76b041", "#ff5733", "#f4c242"]) %>
+        <%= column_chart(
+          {
+            "収入" => @total_incomes_amount.to_i,
+            "支出" => @total_expenses_amount.to_i,
+            "予想支出" => @total_expected_amount.to_i
+          },
+          suffix: "円",
+          height: "100%",
+          width: "100%",
+          colors: ["#76b041", "#ff5733", "#f4c242"]
+        ) %>
       </div>
 
       <div class="expense_value_list">
         <div class="expense_value_item">
           <p>収入</p>
-          <p>480,000円</p>
+          <p>¥ <%= number_with_delimiter(@total_incomes_amount.to_i) %></p>
         </div>
 
         <div class="expense_value_item">
-          <p>収入</p>
-          <p>280,000円</p>
+          <p>支出</p>
+          <p>¥ <%= number_with_delimiter(@total_expenses_amount.to_i) %></p>
         </div>
 
         <div class="expense_value_item">
-          <p>収入</p>
-          <p>380,000円</p>
+          <p>予想支出</p>
+          <p>¥ <%= number_with_delimiter(@total_expected_amount.to_i) %></p>
         </div>
       </div>
     </div>
