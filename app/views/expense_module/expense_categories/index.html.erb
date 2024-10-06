@@ -1,60 +1,62 @@
-<%= render "expense_module/layout/nav_list" %>
+<div class="expense_container_main">
+  <%= render "expense_module/layout/nav_list" %>
 
-<div class="expense_container">
-  <div class="category_content">
-    <div class="category_common_btns">
-      <%= link_to "支出", expense_module_expense_categories_path, class: "category_common_btn #{'unactive' unless current_page?(expense_module_expense_categories_path)}" %>
-      <%= link_to "収入", expense_module_income_categories_path, class: "category_common_btn #{'unactive' unless current_page?(expense_module_income_categories_path)}" %>
-    </div>
+  <div class="expense_container">
+    <div class="category_content">
+      <div class="category_common_btns">
+        <%= link_to "支出", expense_module_expense_categories_path, class: "category_common_btn #{'unactive' unless current_page?(expense_module_expense_categories_path)}" %>
+        <%= link_to "収入", expense_module_income_categories_path, class: "category_common_btn #{'unactive' unless current_page?(expense_module_income_categories_path)}" %>
+      </div>
 
-    <div class="budget_expense">
-      <p>予想支出合計</p>
-      <p>¥ <%= number_with_delimiter(@total_expected_amount.to_i) %></p>
-    </div>
+      <div class="budget_expense">
+        <p>予想支出合計</p>
+        <p>¥ <%= number_with_delimiter(@total_expected_amount.to_i) %></p>
+      </div>
 
 
-    <div class="category_list">
-      <% if notice %>
-        <div class="expense_flash notice">
-          <%= notice %>
-        </div>
-      <% end %>
-
-      <% if alert %>
-        <div class="expense_flash alert">
-          <%= alert %>
-        </div>
-      <% end %>
-
-      <% if @expense_categories.present? %>
-        <% @expense_categories.each do |expense_category| %>
-          <%= link_to edit_expense_module_expense_category_path(expense_category), class: "category_item" do  %>
-            <div class="category_item_left">
-              <span class="category_color" style="background-color: <%= expense_category.color_code %>"></span>
-              <p><%= expense_category.name %></p>
-            </div>
-
-            <div class="category_item_right">
-              <p>予想支出　¥  <%= number_with_delimiter(expense_category.expected_amount.to_i) %></p>
-            </div>
-
-            <div class="expense_category_arrow">
-              <%= image_tag "expense_category_arrow" %>
-            </div>
-          <% end %>
+      <div class="category_list">
+        <% if notice %>
+          <div class="expense_flash notice">
+            <%= notice %>
+          </div>
         <% end %>
-      <% else %>
-        <p class="not_expense_category">
-          支出カテゴリーがありません。<br>
-          新しく追加してください。
-        </p>
-      <% end %>
-    </div>
 
-    <div class="category_list_link">
-      <%= link_to "新規追加", new_expense_module_expense_category_path, class: "category_common_btn" %>
+        <% if alert %>
+          <div class="expense_flash alert">
+            <%= alert %>
+          </div>
+        <% end %>
+
+        <% if @expense_categories.present? %>
+          <% @expense_categories.each do |expense_category| %>
+            <%= link_to edit_expense_module_expense_category_path(expense_category), class: "category_item" do  %>
+              <div class="category_item_left">
+                <span class="category_color" style="background-color: <%= expense_category.color_code %>"></span>
+                <p><%= expense_category.name %></p>
+              </div>
+
+              <div class="category_item_right">
+                <p>予想支出　¥  <%= number_with_delimiter(expense_category.expected_amount.to_i) %></p>
+              </div>
+
+              <div class="expense_category_arrow">
+                <%= image_tag "expense_category_arrow" %>
+              </div>
+            <% end %>
+          <% end %>
+        <% else %>
+          <p class="not_expense_category">
+            支出カテゴリーがありません。<br>
+            新しく追加してください。
+          </p>
+        <% end %>
+      </div>
+
+      <div class="category_list_link">
+        <%= link_to "新規追加", new_expense_module_expense_category_path, class: "category_common_btn" %>
+      </div>
     </div>
   </div>
-</div>
 
-<%= render "expense_module/layout/header" %>
+  <%= render "expense_module/layout/header" %>
+</div>

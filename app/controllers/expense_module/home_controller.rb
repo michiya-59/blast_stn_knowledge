@@ -121,7 +121,6 @@ module ExpenseModule
         scale: 1.2,
         print_background: true
       )
-      
     end
   end
 end

@@ -1,56 +1,58 @@
-<%= render "expense_module/layout/nav_list" %>
+<div class="expense_container_main">
+  <%= render "expense_module/layout/nav_list" %>
 
-<div class="expense_container">
-  <div class="category_common_btns">
-    <%= link_to "支出", expense_module_expenses_path, class: "category_common_btn #{'unactive' unless current_page?(expense_module_expenses_path)}" %>
-    <%= link_to "収入", expense_module_incomes_path, class: "category_common_btn #{'unactive' unless current_page?(expense_module_incomes_path)}" %>
-  </div>
-
-
-  <div class="expense_index">
-    <div class="expense_index_top">
-      <div class="expense_index_left_budget">
-        <span>残りの予算</span><br>
-        <span class="<%= @difference_price.to_i >= 0 ? 'amount_price_plus' : 'amount_price_minus' %>">¥  <%= formatted_amount_with_sign @difference_price.to_i %></span>
-      </div>
-
-      <div class="expense_index_middle_budget">
-        <span><%= Time.current.year %>年</span>
-        <span><%="#{@start_of_month.month}月#{@start_of_month.day}日 〜 #{@end_of_month.month}月#{@end_of_month.day}日" %></span>
-      </div>
-
-      <div class="expense_index_right_budget">
-        <span>¥ -  <%= number_with_delimiter(@total_expenses_amount.to_i) %></span>
-        <span>¥ +  <%= number_with_delimiter(@total_incomes_amount.to_i) %></span>
-      </div>
+  <div class="expense_container expense_index_sp">
+    <div class="category_common_btns expense_common_btns_sp">
+      <%= link_to "支出", expense_module_expenses_path, class: "category_common_btn #{'unactive' unless current_page?(expense_module_expenses_path)}" %>
+      <%= link_to "収入", expense_module_incomes_path, class: "category_common_btn #{'unactive' unless current_page?(expense_module_incomes_path)}" %>
     </div>
 
-    <div class="expense_index_bottom">
-      <% @incomes_by_date.each do |date, incomes| %>
-        <!-- 日付ごとの合計金額 -->
-        <div class="date-header">
-          <span><%= date.strftime("%-d日") %> (<%= Expense::JAPANESE_WEEKDAYS[date.wday] %>)</span>
-          <span>¥  <%= number_with_delimiter(incomes.sum(&:amount).to_i) %></span>
+
+    <div class="expense_index">
+      <div class="expense_index_top">
+        <div class="expense_index_left_budget">
+          <span>残りの予算</span><br>
+          <span class="<%= @difference_price.to_i >= 0 ? 'amount_price_plus' : 'amount_price_minus' %>">¥  <%= formatted_amount_with_sign @difference_price.to_i %></span>
         </div>
 
-        <!-- 各支出の詳細 -->
-        <% incomes.each do |income| %>
-          <div class="expense-item">
-            <span class="expense-amount amount_price_plus">
-              ¥ + <%= number_with_delimiter(income.amount.to_i) %>
-            </span>
-            <span class="expense-category">
-              <%= income.income_category.name %>
-            </span>
-            <span class="expense-date">
-              <%= income.add_date.strftime("%Y/%m/%d") %>
-            </span>
+        <div class="expense_index_middle_budget">
+          <span><%= Time.current.year %>年</span>
+          <span><%="#{@start_of_month.month}月#{@start_of_month.day}日 〜 #{@end_of_month.month}月#{@end_of_month.day}日" %></span>
+        </div>
+
+        <div class="expense_index_right_budget">
+          <span>¥ -  <%= number_with_delimiter(@total_expenses_amount.to_i) %></span>
+          <span>¥ +  <%= number_with_delimiter(@total_incomes_amount.to_i) %></span>
+        </div>
+      </div>
+
+      <div class="expense_index_bottom">
+        <% @incomes_by_date.each do |date, incomes| %>
+          <!-- 日付ごとの合計金額 -->
+          <div class="date-header">
+            <span><%= date.strftime("%-d日") %> (<%= Expense::JAPANESE_WEEKDAYS[date.wday] %>)</span>
+            <span>¥  <%= number_with_delimiter(incomes.sum(&:amount).to_i) %></span>
           </div>
-          <hr>
+
+          <!-- 各支出の詳細 -->
+          <% incomes.each do |income| %>
+            <div class="expense-item">
+              <span class="expense-amount amount_price_plus">
+                ¥ + <%= number_with_delimiter(income.amount.to_i) %>
+              </span>
+              <span class="expense-category">
+                <%= income.income_category.name %>
+              </span>
+              <span class="expense-date">
+                <%= income.add_date.strftime("%Y/%m/%d") %>
+              </span>
+            </div>
+            <hr>
+          <% end %>
         <% end %>
-      <% end %>
+      </div>
     </div>
   </div>
-</div>
 
-<%= render "expense_module/layout/header" %>
+  <%= render "expense_module/layout/header" %>
+</div>
