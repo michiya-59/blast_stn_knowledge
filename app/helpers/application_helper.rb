@@ -75,7 +75,7 @@ module ApplicationHelper
   # 予想支出と支出の差額を求めるメソッド
   def expense_budget_price total_amount, expected_amount
     budget_price = expected_amount - total_amount
-    return formatted_amount_with_sign budget_price
+    formatted_amount_with_sign budget_price
   end
 
   def expense_reports_budget_price total_amount, expected_amount
@@ -83,6 +83,11 @@ module ApplicationHelper
 
     return "" if budget_price == 0
     return "amount_price_plus" if budget_price > 0
-    return "amount_price_minus" if budget_price < 0
+
+    "amount_price_minus" if budget_price < 0
+  end
+
+  def calculate_budget_deficit expected_amount, actual_expense
+    expected_amount.to_i - actual_expense.to_i
   end
 end

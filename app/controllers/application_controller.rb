@@ -161,7 +161,7 @@ class ApplicationController < ActionController::Base
 
   # カテゴリーごとの支出額と色を取得するメソッド
   def category_expenses_with_colors user_id, start_date, end_date
-    expenses = Expense.where(user_id: user_id, add_date: start_date..end_date).includes(:expense_category)
+    expenses = Expense.where(user_id:, add_date: start_date..end_date).includes(:expense_category)
     expenses_by_category = expenses.group(:expense_category_id).sum(:amount)
 
     chart_data = []

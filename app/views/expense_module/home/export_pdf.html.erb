@@ -1,0 +1,82 @@
+<div class="export_pdf_container">
+  <h2><%= @selected_month.month %>月 収支</h2>
+
+  <div class="export_pdf_content_top">
+    <div class="finance_summary">
+      <h3>収支</h3>
+
+      <table class="finance_table">
+        <tbody>
+          <tr>
+            <td>月収</td>
+            <td class="income">¥ <%= number_with_delimiter(@total_incomes_amount.to_i) %></td>
+          </tr>
+          <tr>
+            <td>支出</td>
+            <td class="expense amount_price_minus">¥ - <%= number_with_delimiter(@total_expenses_amount.to_i) %></td>
+          </tr>
+          <tr>
+            <td>予想支出</td>
+            <td class="expected">¥ <%= number_with_delimiter(@total_expected_amount.to_i) %></td>
+          </tr>
+          <tr class="difference_row">
+            <td class="difference_td">差額</td>
+            <td class="difference_td <%= @difference_price.to_i >= 0 ? 'amount_price_plus' : 'amount_price_minus' %>">
+              ¥ <%= formatted_amount_with_sign @difference_price %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="earnings_content">
+      <h3>収入</h3>
+
+      <table class="finance_table">
+        <% @income_infos.each do |(_, category_name), total_amount| %>
+          <tr>
+            <td><%= category_name %></td>
+            <td class="income">¥ +<%= number_with_delimiter(total_amount.to_i) %></td>
+          </tr>
+        <% end %>
+        <tr class="difference_row">
+          <td class="difference_td">合計月収</td>
+          <td class="difference_td">¥ <%= number_with_delimiter(@total_incomes_amount.to_i) %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="export_pdf_content_bottom">
+    <h3>支出</h3>
+
+    <table class="disbursement_table">
+      <thead class="disbursement_table_heade">
+        <tr>
+          <td class="expense1"></td>
+          <td class="expense2">予想支出</td>
+          <td class="expense3">支出</td>
+          <td class="expense4">差額</td>
+        </tr>
+      </thead>
+
+      <tbody class="disbursement_table_body">
+        <% @expense_infos.each do |expense| %>
+          <tr>
+            <td><%= expense.name %></td>
+            <td class="income expense2">¥ <%= number_with_delimiter(expense.expected_amount.to_i) %></td>
+            <td class="income expense3">¥ <%= number_with_delimiter(expense.total_amount.to_i) %></td>
+            <td class="income expense4 <%= calculate_budget_deficit(expense.expected_amount, expense.total_amount) >= 0 ? 'amount_price_plus' : 'amount_price_minus' %>">¥ <%= number_with_delimiter(calculate_budget_deficit(expense.expected_amount, expense.total_amount)) %></td>
+          </tr>
+        <% end %>
+
+        <tr class="disbursement_table_body_difference">
+          <td>小計</td>
+          <td class="expected expense2">¥ <%= number_with_delimiter(@total_expected_amount.to_i) %></td>
+          <td class="expense expense3">¥ <%= number_with_delimiter(@total_expenses_amount.to_i) %></td>
+          <td class="expense4 <%= @expense_info_difference.to_i >= 0 ? 'amount_price_plus' : 'amount_price_minus' %>">¥ <%= number_with_delimiter(@expense_info_difference) %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -34,6 +34,8 @@ gem "gon"
 gem "groupdate"
 gem "prawn"
 gem "prawn-table"
+# PDf出力のGem
+gem "ferrum"
 
 gem "tzinfo-data", platforms: %i(mingw mswin x64_mingw jruby)
 

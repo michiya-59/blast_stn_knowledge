@@ -2,7 +2,7 @@
 
 module ExpenseModule
   class ReportsController < ApplicationController
-    before_action :set_current_day, only: [:index, :budget]
+    before_action :set_current_day, only: %i(index budget)
 
     def index
       expense_categories = combined_categories_for(ExpenseCategory, current_user.id)
@@ -26,10 +26,10 @@ module ExpenseModule
       # 各カテゴリに紐づく支出の合計額を取得
       @expense_data = expense_categories.map do |category|
         {
-          category: category,
+          category:,
           total_amount: Expense.where(expense_category_id: category.id, user_id: current_user.id)
-                              .where(add_date: current_month_start..current_month_end)
-                              .sum(:amount),
+            .where(add_date: current_month_start..current_month_end)
+            .sum(:amount),
           expected_amount: category.expected_amount || 0  # カテゴリーの予算 (expected_amount)
         }
       end

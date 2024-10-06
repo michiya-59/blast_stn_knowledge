@@ -11,9 +11,7 @@
         <%= form.select :month, (1..12).map { |month| [ "#{month}月", month ] }, { selected: @selected_month.month }, { id: "month-select" } %>
       <% end %>
 
-      <div class="export_link">
-        <%= link_to "PDF出力", expense_module_expense_categories_path %>
-      </div>
+      <%= link_to "PDF出力", export_pdf_expense_module_home_index_path(month: params[:month], format: :pdf), class: "export_link" %>
     </div>
 
     <p class="expense_current_time">

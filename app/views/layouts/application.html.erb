@@ -24,8 +24,12 @@
       <% if get_current_path.include?("login") %>
         <%= yield %>
       <% elsif get_current_path.include?("expense")%>
-        <%= render 'layouts/expense_header' %>
-        <%= yield %>
+        <% if get_current_path.include?("expense_module/home/export_pdf")%>
+          <%= yield %>
+        <% else %>
+          <%= render 'layouts/expense_header' %>
+          <%= yield %>
+        <% end %>
       <% else %>
         <%= render 'layouts/header' %>
         <main>

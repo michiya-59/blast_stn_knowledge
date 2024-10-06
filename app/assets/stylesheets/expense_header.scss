@@ -22,6 +22,7 @@
     position: absolute;
     right: 0;
     margin-right: 100px;
+    animation: float 3s ease-in-out infinite;
 
     .arugo_kun_message {
       width: 125px;
@@ -40,6 +41,17 @@
         height: 100%;
       }
     }
+  }
+}
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
   }
 }
 
@@ -308,7 +320,7 @@
     }
 
     .category_item_right {
-      width: 30%;
+      width: 36%;
 
       p {
         font-size: 1.4rem;
@@ -431,7 +443,7 @@
 // 一覧
 .expense_index_top {
   display: flex;
-  width: 38rem;
+  width: 43rem;
   margin: 0 auto;
   font-size: 1.6rem;
   justify-content: space-between;
@@ -689,3 +701,183 @@
   }
 }
 // レポート
+
+// PDF出力
+.export_pdf_container {
+  padding: 4rem;
+
+  .export_pdf_content_top {
+    display: flex;
+  }
+
+  h2 {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #4C76E7;
+    margin-bottom: 4rem;
+  }
+
+  .export_pdf_content_bottom {
+    margin-top: 7rem;
+    width: 80rem;
+
+    h3 {
+      font-size: 2rem;
+      font-weight: 600;
+      padding-bottom: .6rem;
+      margin: 0;
+      border: none;
+      color: #4a6cf7;
+    }
+  }
+}
+.finance_summary, .earnings_content {
+  font-family: Arial, sans-serif;
+  width: 29rem;
+  margin: 0;
+
+  h3 {
+    font-size: 2rem;
+    font-weight: 600;
+    padding-bottom: 0.6rem;
+    margin: 0;
+  }
+}
+
+.finance_summary {
+  margin-right: 6rem;
+}
+
+h3 {
+  font-size: 18px;
+  color: #4a6cf7;
+  border-bottom: 2px solid #4a6cf7;
+  margin-bottom: 10px;
+}
+
+.finance_table {
+  width: 100%;
+  border-collapse: collapse;
+
+  tbody{
+    tr {
+      padding: 0;
+    }
+
+    .difference_td {
+      font-weight: bold !important;
+    }
+  }
+
+  td:nth-child(1) {
+    width: 52%;
+    text-align: left;
+    color: #686868;
+    align-content: center;
+    padding: 1rem 2rem;
+    font-size: 1.8rem;
+  }
+
+  td:nth-child(2) {
+    width: 30rem;
+    font-weight: normal;
+    padding: 1rem 0 1rem 2rem;
+    text-align: left;
+    align-content: center;
+    font-size: 2rem;
+    font-size: 1.8rem;
+  }
+}
+
+.finance_table .income {
+  color: #4caf50;
+  font-weight: bold;
+}
+
+.finance_table .expense {
+  color: #e53935;
+  font-weight: bold;
+}
+
+.finance_table .expected {
+  color: #757575;
+}
+
+.difference_row {
+  background-color: #f0f0f0;
+}
+
+.finance_table .difference {
+  color: #4caf50;
+  font-weight: bold;
+}
+
+
+.disbursement_table {
+  .disbursement_table_heade {
+    background: none;
+    color: #686868;
+    padding: 0;
+    border-bottom: 2px solid #4a6cf7;
+
+    tr td{
+      padding: 0.8rem 0 0.8rem 3rem;
+      width: 9%;
+      text-align: left;
+      color: #686868;
+      font-size: 1.8rem;
+    }
+
+    tr td:nth-child(1) {
+      padding: 0.8rem 0 0.8rem 3rem;
+      width: 8%;
+    }
+  }
+
+  .disbursement_table_body {
+    tr td{
+      padding: 0.8rem 0 0.8rem 3rem;
+      width: 10%;
+      text-align: left;
+      color: #686868;
+      font-size: 1.8rem;
+    }
+
+    tr td:nth-child(1) {
+      padding: 0.8rem;
+      padding-left: 3rem;
+      // width: 9%;
+      width: 187px !important;
+    }
+
+    .difference_row td {
+      font-weight: bold;
+    }
+
+    .difference_row .total_body {
+      color: black;
+    }
+  }
+}
+
+.expense1 {
+  width: 187px !important;
+}
+
+.expense2 {
+  width: 204px !important;
+}
+
+.expense3 {
+  width: 202px !important;
+}
+
+.expense4 {
+  width: 195px !important;
+}
+
+.disbursement_table_body_difference {
+  background-color: #f0f0f0;
+  font-weight: bold;
+}
+// PDF出力

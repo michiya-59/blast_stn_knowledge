@@ -41,7 +41,7 @@
       <div class="expense_reports_item right_bottom">
         <span>収支</span>
         <span class="<%= @difference_price.to_i >= 0 ? 'amount_price_plus' : 'amount_price_minus' %>">
-          ¥ + <%= number_with_delimiter(@difference_price.to_i) %>
+          ¥ <%= formatted_amount_with_sign @difference_price %>
         </span>
       </div>
     </div>
