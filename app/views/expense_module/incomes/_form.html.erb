@@ -1,0 +1,27 @@
+<%= form_with model: income, url: expense_module_incomes_path, local: true do |form| %>
+  <div class="expense_category_form">
+    <div class="expense_category_field">
+      <%= form.label :add_date, "日付", class: "expense_label" %>
+      <%= form.date_field :add_date, value: Date.today, class: "expense_category_input", required: true %>
+    </div>
+
+    <div class="expense_category_field">
+      <%= form.label :name, "項目名", class: "expense_label" %>
+      <%= form.collection_select :income_category_id, @income_categories, :id, :name, { prompt: "カテゴリーを選択" }, { class: "expense_category_select", required: true } %>
+    </div>
+
+    <div class="expense_category_field">
+      <%= form.label :amount, "収入", class: "expense_label income_green" %>
+
+      <div class="input_with_symbol">
+        <span class="currency_symbol">¥</span>
+        <%= form.number_field :amount, class: "expense_category_input expected_amount", value: income.amount.to_i || 0, required: true %>
+      </div>
+    </div>
+  </div>
+
+  <%= form.hidden_field :user_id, value: current_user.id %>
+  <div class="category_list_link">
+    <%= form.submit "追加", class: "category_common_btn" %>
+  </div>
+<% end %>

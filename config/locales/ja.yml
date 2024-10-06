@@ -13,16 +13,16 @@ ja:
               blank: "は必須入力です"
         seminar:
           attributes:
-            year: 
+            year:
               greater_than_or_equal_to: "%{count}以上の値を入力してください。"
               less_than_or_equal_to: "%{count}以下の値を入力してください。"
-            month: 
+            month:
               greater_than_or_equal_to: "%{count}以上の値を入力してください。"
               less_than_or_equal_to: "%{count}以下の値を入力してください。"
-            day: 
+            day:
               greater_than_or_equal_to: "%{count}以上の値を入力してください。"
               less_than_or_equal_to: "%{count}以下の値を入力してください。"
-            start_time: 
+            start_time:
               start_time_or_end_time_blank: "開始時刻と終了時刻のいずれかが設定されていません。"
               start_time_before_end_time: "開始時刻は終了時刻より後の時刻で設定してください。"
         posts:
@@ -30,12 +30,12 @@ ja:
             title:
               blank: "を入力してください。"
               too_long: "は35文字以内で入力してください。"
-            body: 
+            body:
               blank: "を入力してください。"
-            category_flg: 
+            category_flg:
               blank: "を選択してください。"
             event_image:
-              blank: "を選択してください。"        
+              blank: "を選択してください。"
         incentives:
           attributes:
             course_name:
@@ -58,6 +58,14 @@ ja:
               blank: "を選択してください。"
             comment:
               blank: "を入力してください。"
+        expense:
+          attributes:
+            amount:
+              greater_than_or_equal_to: "は1円以上の値を入力してください"
+        income:
+          attributes:
+            amount:
+              greater_than_or_equal_to: "は1円以上の値を入力してください"
     attributes:
       tmp_member_info:
         user_id: ユーザID
@@ -128,6 +136,10 @@ ja:
       task:
         learn: 新規MT
         commont: 感想
+      expense:
+        amount: "支出"
+      income:
+        amount: "収入"
   date:
     abbr_day_names:
     - 日
@@ -138,7 +150,7 @@ ja:
     - 金
     - 土
     abbr_month_names:
-    - 
+    -
     - 1月
     - 2月
     - 3月
@@ -164,7 +176,7 @@ ja:
       long: "%Y年%m月%d日(%a)"
       short: "%m/%d"
     month_names:
-    - 
+    -
     - 1月
     - 2月
     - 3月

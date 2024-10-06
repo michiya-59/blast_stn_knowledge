@@ -1,0 +1,883 @@
+.expense_header {
+  display: flex;
+  position: relative;
+  padding: 20px 110px;
+  background: #4C76E7;
+
+  .expense_header_left{
+    font-size: 2.1rem;
+    font-weight: bold;
+    color: white;
+  }
+
+  .expense_header_right {
+    font-size: 2.1rem;
+    color: white;
+    margin-left: auto;
+    margin-right: 200px;
+  }
+
+  .arugo_kun_icon {
+    display: flex;
+    position: absolute;
+    right: 0;
+    margin-right: 100px;
+    animation: float 3s ease-in-out infinite;
+
+    .arugo_kun_message {
+      width: 125px;
+      height: 94px;
+
+      img {
+        height: 100%;
+      }
+    }
+
+    .arugo_kun {
+      width: 76px;
+      height: 143px;
+
+      img {
+        height: 100%;
+      }
+    }
+  }
+}
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.expense_flash {
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+}
+
+.expense_flash.notice {
+  color: green;
+}
+
+.expense_flash.alert {
+  color: #f44336;
+}
+
+.disabled_category {
+  background-color: #e1e1e1a6;
+}
+
+.expense_nav_list {
+  ul {
+    display: flex;
+    width: 98rem;
+    box-shadow: 2px 2px 8px 2px #98989869;
+    padding: 20px;
+    margin: 25px auto;
+    gap: 0 25px;
+    align-items: center;
+
+    li {
+      .expense_nav_link {
+        display: flex;
+        align-items: center;
+        position: relative;
+        text-decoration: none;
+        padding-bottom: 4px;
+
+        .expense_icon {
+          width: 3rem;
+          height: 3rem;
+          margin-right: 5px;
+
+          img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+
+        p {
+          font-size: 1.6rem;
+        }
+      }
+
+      .expense_nav_link.active {
+        border-bottom: 2px solid #4C76E7;
+      }
+
+      .expense_nav_link.active {
+      }
+
+      .expense_nav_link:not(.active) {
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          right: 0;
+          width: 0;
+          height: 2px; /* 下線の太さ */
+          background-color: #4C76E7; /* 下線の色 */
+          transition: width 0.4s ease; /* アニメーションの速度と動き */
+        }
+
+        &:hover::after {
+          left: 0;
+          right: auto;
+          width: 100%; /* ホバー時に下線を100%幅まで広げる */
+        }
+      }
+    }
+  }
+}
+
+.expense_container {
+  margin: 0 auto 25px auto;
+  width: 98rem;
+  height: 57rem;
+  box-shadow: 2px 2px 8px 2px rgba(152, 152, 152, .4117647059);
+  padding: 3rem 5rem;
+}
+
+.expense_search {
+  display: flex;
+  justify-content: space-between;
+
+  select {
+    width: 10rem;
+    height: 3rem;
+    box-shadow: 0.5px 0.5px 6px 0.5px rgba(152, 152, 152, .4117647059);
+    border: 1px solid #e9e9e9;
+    padding: 3px 6px;
+    font-size: 1.6rem;
+  }
+
+  .export_link {
+    font-size: 1.6rem;
+    background-color: #4C76E7;
+    color: white;
+    width: 15.4rem;
+    height: 3.4rem;
+    border-radius: 5px;
+    text-align: center;
+    align-content: center;
+
+    a {
+      display: inline-block;
+    }
+  }
+}
+
+.expense_current_time {
+  font-size: 1.7rem;
+  margin-top: 3rem;
+
+  span:nth-child(1) {
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: #4C76E7;
+  }
+
+  span:nth-child(2) {
+    font-size: 1.7rem;
+    color: #686868;
+  }
+}
+
+.expense_detail {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 3.2rem;
+
+  .expense_chart {
+    width: 59rem;
+    height: 32rem;
+    border: 1px solid #C5C5C5;
+    padding: 3rem 3rem 2rem 2rem;
+  }
+}
+
+.expense_value_list {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem 0;
+
+  .expense_value_item {
+    width: 24rem;
+    height: 11rem;
+    box-shadow: 2px 2px 8px 2px rgba(152, 152, 152, 0.4117647059);
+    padding: 1.5rem 2rem;
+
+    p:nth-child(1) {
+      font-size: 2.4rem;
+      color: #686868;
+    }
+
+    p:nth-child(2) {
+      font-size: 3.5rem;
+      margin-top: 1rem;
+      color: #4C76E7;
+    }
+  }
+}
+
+.expense_footer {
+  margin: 0 auto;
+  width: 98rem;
+  box-shadow: 2px 2px 8px 2px rgba(152, 152, 152, 0.4117647059);
+  display: flex;
+  justify-content: space-between;
+  padding: 1.5rem;
+  color: #686868;
+  margin-bottom: 2.5rem;
+  font-size: 1.4rem;
+}
+
+// カテゴリー
+.category_common_btns {
+  display: flex;
+  gap: 0 1rem;
+  margin-bottom: 2rem;
+}
+
+.category_common_btns.margin_zero {
+  margin: 0;
+}
+
+.category_common_btn {
+  display: flex;
+  gap: 0 1.6rem;
+
+}
+
+.category_common_btn.unactive {
+  background-color: #4c76e791;
+}
+
+.category_common_btn {
+  display: inline-block;
+  width: 8.4rem;
+  height: 3.4rem;
+  background: #4C76E7;
+  color: white;
+  font-size: 1.6rem;
+  border-radius: 5px !important;
+  text-align: center;
+  align-content: center;
+  border: none;
+}
+
+.budget_expense {
+  display: flex;
+  align-items: center;
+
+  p:nth-child(1) {
+    font-size: 1.4rem;
+    color: #686868;
+    margin-right: 1.5rem;
+  }
+
+  p:nth-child(2) {
+    font-size: 2rem;
+  }
+}
+
+.category_list {
+  margin: 2rem 0;
+  height: 35.7rem;
+  overflow-y: scroll;
+  width: 59%;
+
+  .category_item {
+    width: 49rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #c8c8c8;
+    padding: 1rem;
+
+    .category_item_left {
+      display: flex;
+      align-items: center;
+      width: 47%;
+
+      .category_color {
+        display: inline-block;
+        width: 1.7rem;
+        height: 1.7rem;
+        background-color: #3D9BFF;
+        border-radius: 50%;
+      }
+
+      p {
+        font-size: 1.7rem;
+        margin-left: 0.7rem;
+      }
+    }
+
+    .category_item_right {
+      width: 36%;
+
+      p {
+        font-size: 1.4rem;
+      }
+    }
+
+    .expense_category_arrow {
+      width: 1.1rem;
+      height: 1.7rem;
+      margin-left: auto;
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+
+  .not_expense_category {
+    font-size: 1.6rem;
+    color: #686868;
+  }
+}
+
+.category_list_link {
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0 1rem;
+
+  a:nth-child(1) {
+    font-size: 1.6rem;
+  }
+
+  a:nth-child(2) {
+    width: 15rem;
+  }
+}
+
+.expense_category_title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #686868;
+  margin-bottom: 2rem;
+}
+
+.expense_category_form {
+  margin-bottom: 3rem;
+}
+
+.expense_category_field {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+
+  .expense_category_label, .expense_label {
+    font-size: 1.8rem;
+    color: #686868;
+    width: 12rem;
+    display: inline-block;
+  }
+
+  .expense_category_label.income, .expense_label.income {
+    width: 7rem;
+  }
+
+  .expense_category_label.expense_red, .expense_label.expense_red {
+    color: #f44336;
+  }
+
+  .expense_category_label.income_green, .expense_label.income_green {
+    color: #71C054;
+  }
+
+  .expense_label {
+    width: 9rem;
+  }
+
+  .expense_category_input {
+    padding: 0.8rem 2rem;
+    width: 27rem;
+    font-size: 1.8rem;
+  }
+
+  .expense_category_input.expected_amount {
+    padding-left: 3.5rem;
+  }
+
+  .expense_category_color {
+    width: 4rem;
+    height: 4rem;
+    display: inline-block;
+    border-radius: 50%;
+    padding: 0 2px;
+  }
+
+  .expense_category_select {
+    padding: .8rem 2rem;
+    width: 27rem;
+    font-size: 1.8rem;
+    border: 1px solid #afafaf;
+    border-radius: .3rem !important;
+  }
+}
+
+.input_with_symbol {
+  position: relative;
+}
+
+
+.currency_symbol {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.8rem;
+}
+// カテゴリー
+
+// 一覧
+.expense_index_top {
+  display: flex;
+  width: 43rem;
+  margin: 0 auto;
+  font-size: 1.6rem;
+  justify-content: space-between;
+  align-items: center;
+
+  .expense_index_left_budget {
+    span:nth-child(1) {
+      color: #686868;
+      margin-bottom: 0.7rem;
+      display: inline-block;
+    }
+
+    span:nth-child(3) {
+      color: #71C054;
+    }
+  }
+
+  .expense_index_middle_budget {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-size: 2rem;
+    color: #686868;
+
+    span:nth-child(1) {
+      font-weight: bold;
+    }
+  }
+
+  .expense_index_right_budget {
+    display: flex;
+    flex-direction: column;
+    font-size: 1.6rem;
+
+    span:nth-child(1) {
+      color: #E24444;
+      margin-bottom: 0.7rem;
+      display: inline-block;
+    }
+
+    span:nth-child(2) {
+      color: #71C054;
+    }
+  }
+}
+
+.expense_index_top.reports {
+  justify-content: center;
+}
+
+.amount_price_plus {
+  color: #71C054 !important;
+}
+
+.amount_price_minus {
+  color: #E24444 !important;
+}
+
+.amount_price_blue {
+  color: #4C76E7 !important;
+}
+
+.expense_index_bottom {
+  margin: 2rem auto;
+  height: 36rem;
+  overflow-y: scroll;
+  width: 60rem;
+
+  .date-header {
+    padding: 1rem 2rem;
+    font-size: 1.6rem;
+    background-color: #EFEFEF;
+
+    span:nth-child(1) {
+      margin-right: 1rem;
+    }
+  }
+
+  .expense-item {
+    font-size: 1.6rem;
+    padding: 1rem 1.5rem;
+
+    .expense-amount {
+      color: #E24444;
+      width: 26%;
+      display: inline-block;
+    }
+
+    .expense-category {
+      color: #686868;
+      margin-right: 13rem;
+      width: 30%;
+      display: inline-block;
+    }
+
+    .expense-date {
+      color: #686868;
+      margin-left: auto;
+    }
+
+  }
+  hr {
+    color: #CDCDCD;
+  }
+}
+// 一覧
+
+// レポート
+.expense_reports_content {
+  width: 50rem;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  margin-top: 1rem;
+
+  .expense_reports_content_left, .expense_reports_content_right {
+    border-right: 1px solid #C5C5C5;
+
+    .expense_reports_item {
+      padding: 1.1rem;
+
+      span:nth-child(1) {
+        font-size: 1.4rem;
+        width: 8rem;
+        display: inline-block;
+      }
+
+      span:nth-child(2) {
+        font-size: 1.7rem;
+      }
+    }
+
+    .expense_reports_item.left_top {
+      border-bottom: 1px solid #C5C5C5;
+
+      span:nth-child(2) {
+        color: #E24444;
+      }
+    }
+
+    .expense_reports_item.left_bottom {
+      span:nth-child(1) {
+        margin-right: 1.5rem;
+      }
+      span:nth-child(2) {
+        color: #686868;
+      }
+    }
+
+    .expense_reports_item.right_top {
+      border-bottom: 1px solid #C5C5C5;
+
+      span:nth-child(2) {
+        color: #4C76E7;
+      }
+    }
+
+    .expense_reports_item.right_bottom {
+      span:nth-child(2) {
+        color: #71C054;
+      }
+    }
+  }
+
+  .expense_reports_content_right {
+    border: none;
+  }
+}
+
+.expense_reports_budget {
+  text-align: center;
+  margin-top: 1rem;
+
+  span:nth-child(1) {
+    font-size: 1.6rem;
+    margin-right: 1rem;
+  }
+
+  span:nth-child(2) {
+    font-size: 2.1rem;
+  }
+}
+
+.expense_pie_chart {
+  width: 100%;
+  height: 28rem;
+  margin: 0 auto;
+  margin-top: 2.5rem;
+}
+
+.expense_budget_content {
+  margin-top: 4rem;
+  width: 65rem;
+
+  .expense_budget_header {
+    display: flex;
+    font-size: 1.7rem;
+    font-weight: bold;
+    color: #686868;
+    padding: 0 1rem;
+    margin: 0;
+
+    li:nth-child(1) {
+      width: 35%;
+    }
+
+    li:nth-child(2) {
+      width: 22%;
+    }
+
+    li:nth-child(3) {
+      width: 22%;
+    }
+  }
+
+  .expense_budget_data {
+    margin-top: 2rem;
+    height: 40rem;
+    overflow-y: scroll;
+
+    .expense_budget_item {
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid #CDCDCD;
+      padding: 1rem;
+
+      .expense_budget_item1 {
+        display: flex;
+        align-items: center;
+        width: 37%;
+
+        span:nth-child(1) {
+          width: 1.7rem;
+          height: 1.7rem;
+          display: inline-block;
+          background: antiquewhite;
+          border-radius: 50%;
+          margin-right: 0.5rem;
+        }
+
+        span:nth-child(2) {
+          font-size: 2rem;
+        }
+      }
+
+      .expense_budget_item2, .expense_budget_item3 {
+        font-size: 1.6rem;
+        width: 22%;
+      }
+
+      .expense_budget_item4 {
+        font-size: 1.6rem;
+      }
+    }
+  }
+}
+// レポート
+
+// PDF出力
+.export_pdf_container {
+  padding: 4rem;
+
+  .export_pdf_content_top {
+    display: flex;
+  }
+
+  h2 {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #4C76E7;
+    margin-bottom: 4rem;
+  }
+
+  .export_pdf_content_bottom {
+    margin-top: 7rem;
+    width: 80rem;
+
+    h3 {
+      font-size: 2rem;
+      font-weight: 600;
+      padding-bottom: .6rem;
+      margin: 0;
+      border: none;
+      color: #4a6cf7;
+    }
+  }
+}
+.finance_summary, .earnings_content {
+  font-family: Arial, sans-serif;
+  width: 29rem;
+  margin: 0;
+
+  h3 {
+    font-size: 2rem;
+    font-weight: 600;
+    padding-bottom: 0.6rem;
+    margin: 0;
+  }
+}
+
+.finance_summary {
+  margin-right: 6rem;
+}
+
+h3 {
+  font-size: 18px;
+  color: #4a6cf7;
+  border-bottom: 2px solid #4a6cf7;
+  margin-bottom: 10px;
+}
+
+.finance_table {
+  width: 100%;
+  border-collapse: collapse;
+
+  tbody{
+    tr {
+      padding: 0;
+    }
+
+    .difference_td {
+      font-weight: bold !important;
+    }
+  }
+
+  td:nth-child(1) {
+    width: 52%;
+    text-align: left;
+    color: #686868;
+    align-content: center;
+    padding: 1rem 2rem;
+    font-size: 1.8rem;
+  }
+
+  td:nth-child(2) {
+    width: 30rem;
+    font-weight: normal;
+    padding: 1rem 0 1rem 2rem;
+    text-align: left;
+    align-content: center;
+    font-size: 2rem;
+    font-size: 1.8rem;
+  }
+}
+
+.finance_table .income {
+  color: #4caf50;
+  font-weight: bold;
+}
+
+.finance_table .expense {
+  color: #e53935;
+  font-weight: bold;
+}
+
+.finance_table .expected {
+  color: #757575;
+}
+
+.difference_row {
+  background-color: #f0f0f0;
+}
+
+.finance_table .difference {
+  color: #4caf50;
+  font-weight: bold;
+}
+
+
+.disbursement_table {
+  .disbursement_table_heade {
+    background: none;
+    color: #686868;
+    padding: 0;
+    border-bottom: 2px solid #4a6cf7;
+
+    tr td{
+      padding: 0.8rem 0 0.8rem 3rem;
+      width: 9%;
+      text-align: left;
+      color: #686868;
+      font-size: 1.8rem;
+    }
+
+    tr td:nth-child(1) {
+      padding: 0.8rem 0 0.8rem 3rem;
+      width: 8%;
+    }
+  }
+
+  .disbursement_table_body {
+    tr td{
+      padding: 0.8rem 0 0.8rem 3rem;
+      width: 10%;
+      text-align: left;
+      color: #686868;
+      font-size: 1.8rem;
+    }
+
+    tr td:nth-child(1) {
+      padding: 0.8rem;
+      padding-left: 3rem;
+      // width: 9%;
+      width: 187px !important;
+    }
+
+    .difference_row td {
+      font-weight: bold;
+    }
+
+    .difference_row .total_body {
+      color: black;
+    }
+  }
+}
+
+.expense1 {
+  width: 187px !important;
+}
+
+.expense2 {
+  width: 204px !important;
+}
+
+.expense3 {
+  width: 202px !important;
+}
+
+.expense4 {
+  width: 195px !important;
+}
+
+.disbursement_table_body_difference {
+  background-color: #f0f0f0;
+  font-weight: bold;
+}
+// PDF出力

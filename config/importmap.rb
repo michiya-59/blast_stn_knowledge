@@ -16,3 +16,5 @@ pin "@rails/activestorage", to: "https://ga.jspm.io/npm:@rails/activestorage@7.1
 pin "orgchart", to: "https://ga.jspm.io/npm:orgchart@3.8.2/dist/js/jquery.orgchart.min.js", preload: true
 pin "select2", to: "https://ga.jspm.io/npm:select2@4.0.13/dist/js/select2.js"
 pin "tom-select", to: "https://ga.jspm.io/npm:tom-select@2.3.1/dist/js/tom-select.complete.js"
+pin "chartkick", to: "chartkick.js"
+pin "Chart.bundle", to: "Chart.bundle.js"

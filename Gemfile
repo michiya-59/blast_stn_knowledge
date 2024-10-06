@@ -28,10 +28,14 @@ gem "sprockets-rails"
 gem "stimulus-rails"
 # gem "turbo-rails"
 gem "aws-sdk-s3"
+gem "chartkick"
 gem "dotenv-rails"
 gem "gon"
+gem "groupdate"
 gem "prawn"
 gem "prawn-table"
+# PDf出力のGem
+gem "ferrum"
 
 gem "tzinfo-data", platforms: %i(mingw mswin x64_mingw jruby)
 
@@ -52,7 +56,7 @@ group :development, :test do
 end
 
 group :development do
-  gem "rack-mini-profiler"
+  # gem "rack-mini-profiler"
   gem "spring"
   gem "web-console"
 end

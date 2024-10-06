@@ -102,6 +102,25 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :expense_module do
+    resources :home, only: %i(index) do
+      collection do
+        get "search"
+        get "export_pdf"
+      end
+    end
+    resources :expenses, only: %i(index new create)
+    resources :incomes, only: %i(index new create)
+    resources :expense_categories, only: %i(index edit update new create destroy)
+    resources :income_categories, only: %i(index edit update new create destroy)
+    resources :reports, only: %i(index) do
+      collection do
+        get "budget"
+      end
+    end
+    resources :report, only: %i(index)
+  end
+
   match "/404", to: "errors#not_found", via: :all
   match "/500", to: "errors#internal_server_error", via: :all
   match "*path", to: "application#render_404", via: :all

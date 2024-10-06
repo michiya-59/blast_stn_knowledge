@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "line_notifier"
+require "active_support/core_ext/numeric/conversions"
 
 class ApplicationController < ActionController::Base
   include(SessionsHelper)
@@ -111,5 +112,67 @@ class ApplicationController < ActionController::Base
     else
       render_500(exception)
     end
+  end
+
+  # 汎用的なカテゴリの統合メソッド
+  def combined_categories_for model_class, user_id
+    default_categories = fetch_default_categories(model_class)
+    user_categories = fetch_user_categories(model_class, user_id)
+
+    # ユーザーのカテゴリーをハッシュ化
+    user_categories_hash = user_categories.index_by(&:name)
+
+    # デフォルトカテゴリーにユーザーのカテゴリーをマージ
+    combined_categories = default_categories.map do |default_category|
+      user_categories_hash[default_category.name] || default_category
+    end
+
+    # ユーザー独自のカテゴリーを追加
+    combined_categories += user_categories.reject{|category| default_categories.map(&:name).include?(category.name)}
+
+    combined_categories
+  end
+
+  # デフォルトカテゴリーの取得
+  def fetch_default_categories model_class
+    model_class.where(user_id: 99_999)
+  end
+
+  # 現在のユーザーのカテゴリーを取得
+  def fetch_user_categories model_class, user_id
+    model_class.where(user_id:)
+  end
+
+  def calculate_difference_price user_id, current_month_start, current_month_end
+    # 今月のユーザーの支出を取得（N+1クエリ防止のため includes を使用）
+    total_expenses_amount = Expense.where(user_id:, add_date: current_month_start..current_month_end)
+      .includes(:expense_category)
+      .sum(:amount)
+
+    # 今月のユーザーの収入を取得（N+1クエリ防止のため includes を使用）
+    total_incomes_amount = Income.where(user_id:, add_date: current_month_start..current_month_end)
+      .includes(:income_category)
+      .sum(:amount)
+    # 差額を計算
+    difference_price = total_incomes_amount.to_i - total_expenses_amount.to_i
+
+    [difference_price, total_expenses_amount, total_incomes_amount]
+  end
+
+  # カテゴリーごとの支出額と色を取得するメソッド
+  def category_expenses_with_colors user_id, start_date, end_date
+    expenses = Expense.where(user_id:, add_date: start_date..end_date).includes(:expense_category)
+    expenses_by_category = expenses.group(:expense_category_id).sum(:amount)
+
+    chart_data = []
+    chart_colors = []
+
+    expenses_by_category.each do |category_id, total_amount|
+      category = ExpenseCategory.find(category_id)
+      chart_data << [category.name, total_amount]
+      chart_colors << category.color_code # color_codeを取得
+    end
+
+    [chart_data, chart_colors]
   end
 end

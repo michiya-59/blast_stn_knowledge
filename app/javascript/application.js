@@ -9,3 +9,5 @@ import Rails from '@rails/ujs';
 Rails.start();
 import("jquery-ui-dist")
 import "@fortawesome/fontawesome-free"
+import "chartkick"
+import "Chart.bundle"
