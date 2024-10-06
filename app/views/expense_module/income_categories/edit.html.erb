@@ -1,9 +1,11 @@
-<%= render "expense_module/layout/nav_list" %>
+<div class="expense_container_main">
+  <%= render "expense_module/layout/nav_list" %>
 
-<div class="expense_container">
-  <h2 class="expense_category_title">収入カテゴリー編集</h2>
+  <div class="expense_container">
+    <h2 class="expense_category_title">収入カテゴリー編集</h2>
 
-  <%= render 'form', income_category: @income_category %>
+    <%= render 'form', income_category: @income_category %>
+  </div>
+
+  <%= render "expense_module/layout/header" %>
 </div>
-
-<%= render "expense_module/layout/header" %>
