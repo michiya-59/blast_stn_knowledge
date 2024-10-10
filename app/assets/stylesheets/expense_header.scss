@@ -641,6 +641,10 @@ html {
     color: #686868;
     width: 12rem;
     display: inline-block;
+
+    @include responsive_media(sp){
+      font-size: 2rem;
+    }
   }
 
   .expense_category_label.income, .expense_label.income {
@@ -666,6 +670,7 @@ html {
 
     @include responsive_media(sp){
       width: 100%;
+      font-size: 2.5rem;
     }
   }
 
