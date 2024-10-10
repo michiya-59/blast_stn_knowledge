@@ -103,22 +103,22 @@ html {
       p {
         position: absolute;
         width: 100px;
-        height: 94px;
-        top: 3rem;
-        left: 1rem;
+        height: 44px;
+        top: 1.8rem;
+        left: 1.3rem;
       }
 
       @include responsive_media(sp){
         position: relative;
-        height: 7.7rem;
-        width: 13.3rem;
+        height: 8.7rem;
+        width: 16.3rem;
 
         p {
-          top: 1.5rem;
-          font-size: 1.1rem;
-          height: 3.7rem;
-          width: 10rem;
-          left: 2rem;
+          top: 1.8rem;
+          font-size: 1.3rem;
+          height: 4.7rem;
+          width: 14rem;
+          left: 1.5rem;
         }
       }
     }
