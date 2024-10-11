@@ -80,11 +80,11 @@ module LineNotifier
     user_name = message.name
     case message.incentive_id.to_i
     when 1
-      entry_plan = "ノーマルコース"
+      entry_plan = "ノーマルコース（2ヶ月）"
     when 2
-      entry_plan = "デラックスコース"
+      entry_plan = "デラックスコース（6ヶ月）"
     when 3
-      entry_plan = "ラグジュアリーコース"
+      entry_plan = "ラグジュアリーコース（12ヶ月）"
     end
     introduce_user = User.find(message.introducer_id).name
     salse_user = User.find(message.sales_id).name
