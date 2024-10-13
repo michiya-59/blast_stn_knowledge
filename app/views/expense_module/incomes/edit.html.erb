@@ -1,0 +1,29 @@
+<div class="expense_container_main">
+  <%= render "expense_module/layout/nav_list" %>
+
+  <div class="expense_container">
+    <div class="category_common_btns">
+      <%= link_to "支出", new_expense_module_expense_path, class: "category_common_btn #{'unactive' unless current_page?(edit_expense_module_expense_path)}" %>
+      <%= link_to "収入", new_expense_module_income_path, class: "category_common_btn #{'unactive' unless current_page?(edit_expense_module_income_path)}" %>
+    </div>
+
+    <h2 class="expense_category_title">収入編集</h2>
+
+    <% if notice %>
+      <div class="expense_flash notice">
+        <%= notice %>
+      </div>
+    <% end %>
+
+    <% if alert %>
+      <div class="expense_flash alert">
+        <%= alert %>
+      </div>
+    <% end %>
+
+    <%= render 'form', income: @income %>
+    <%= link_to "戻る", expense_module_incomes_path, class: "edit_back_btn" %>
+  </div>
+
+  <%= render "expense_module/layout/header" %>
+</div>

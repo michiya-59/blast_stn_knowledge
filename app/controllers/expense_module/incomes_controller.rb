@@ -2,7 +2,7 @@
 
 module ExpenseModule
   class IncomesController < ApplicationController
-    before_action :set_expense, only: %i(edit update destroy)
+    before_action :set_income, only: %i(edit update destroy)
     before_action :set_users_and_categories, only: %i(new edit create update)
     before_action :set_current_day, only: [:index]
 
@@ -20,7 +20,10 @@ module ExpenseModule
     end
 
     def new
-      @income = Income.new
+      @income = Income.new(
+        add_date: Time.zone.today,
+        amount: 0
+      )
     end
 
     def edit; end
@@ -36,9 +39,10 @@ module ExpenseModule
 
     def update
       if @income.update(expense_params)
-        redirect_to new_expense_module_income_path, notice: "支出が更新されました。"
+        redirect_to expense_module_incomes_path, notice: "収入が更新されました。"
       else
-        render :edit
+        error = @income.errors.full_messages.join(", ")
+        redirect_to edit_expense_module_income_path, alert: error.to_s
       end
     end
 
@@ -49,7 +53,7 @@ module ExpenseModule
 
     private
 
-    def set_expense
+    def set_income
       @income = Income.find(params[:id])
     end
 
