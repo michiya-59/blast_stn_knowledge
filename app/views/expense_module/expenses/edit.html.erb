@@ -3,8 +3,8 @@
 
   <div class="expense_container">
     <div class="category_common_btns">
-      <%= link_to "支出", new_expense_module_expense_path, class: "category_common_btn #{'unactive' unless current_page?(new_expense_module_expense_path)}" %>
-      <%= link_to "収入", new_expense_module_income_path, class: "category_common_btn #{'unactive' unless current_page?(new_expense_module_income_path)}" %>
+      <%= link_to "支出", new_expense_module_expense_path, class: "category_common_btn #{'unactive' unless current_page?(edit_expense_module_expense_path)}" %>
+      <%= link_to "収入", new_expense_module_income_path, class: "category_common_btn #{'unactive' unless current_page?(edit_expense_module_income_path)}" %>
     </div>
 
     <h2 class="expense_category_title">支出編集</h2>
