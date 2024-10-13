@@ -627,6 +627,18 @@ html {
   margin-bottom: 2rem;
 }
 
+.edit_back_btn {
+  padding: 0 1rem;
+  margin-top: 2rem;
+  display: inline-block;
+  font-size: 1.6rem;
+
+  @include responsive_media(sp){
+    font-size: 2rem;
+    margin-top: 3rem;
+  }
+}
+
 .expense_category_form {
   margin-bottom: 3rem;
 }
@@ -832,6 +844,7 @@ html {
   .expense-item {
     font-size: 1.6rem;
     padding: 1rem 1.5rem;
+    display: block;
 
     @include responsive_media(sp){
       padding: 1rem 1.7rem;

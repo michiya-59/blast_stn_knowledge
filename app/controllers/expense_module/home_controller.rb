@@ -80,6 +80,12 @@ module ExpenseModule
       @expense_infos = Expense.total_expenses_by_category current_user.id, current_month_start, current_month_end
       @expense_info_difference = @total_expected_amount.to_i - @total_expenses_amount.to_i
 
+      @total_expected_amount = @expense_infos.sum{|expense| expense.expected_amount.to_i}
+      @total_expenses_amount = @expense_infos.sum{|expense| expense.total_amount.to_i}
+      @expense_info_difference = @expense_infos.sum do |expense|
+        calculate_budget_deficit(expense.expected_amount, expense.total_amount)
+      end
+
       respond_to do |format|
         format.pdf do
           html = render_to_string(
@@ -98,6 +104,10 @@ module ExpenseModule
     end
 
     private
+
+    def calculate_budget_deficit expected_amount, total_amount
+      expected_amount.to_i - total_amount.to_i
+    end
 
     def html_to_pdf html
       browser = Ferrum::Browser.new(

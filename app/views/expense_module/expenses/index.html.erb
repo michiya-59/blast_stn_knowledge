@@ -7,6 +7,17 @@
       <%= link_to "収入", expense_module_incomes_path, class: "category_common_btn #{'unactive' unless current_page?(expense_module_incomes_path)}" %>
     </div>
 
+    <% if flash[:notice] %>
+      <div class="expense_flash notice">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+
+    <% if flash[:alert] %>
+      <div class="expense_flash alert">
+        <%= flash[:alert] %>
+      </div>
+    <% end %>
 
     <div class="expense_index">
       <div class="expense_index_top">
@@ -36,7 +47,7 @@
 
           <!-- 各支出の詳細 -->
           <% expenses.each do |expense| %>
-            <div class="expense-item">
+            <%= link_to edit_expense_module_expense_path(expense), class: "expense-item" do %>
               <span class="expense-amount">
                 ¥ - <%= number_with_delimiter(expense.amount.to_i) %>
               </span>
@@ -46,7 +57,7 @@
               <span class="expense-date">
                 <%= expense.add_date.strftime("%Y/%m/%d") %>
               </span>
-            </div>
+            <% end %>
             <hr>
           <% end %>
         <% end %>

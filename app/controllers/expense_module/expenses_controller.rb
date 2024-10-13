@@ -20,7 +20,10 @@ module ExpenseModule
     end
 
     def new
-      @expense = Expense.new
+      @expense = Expense.new(
+        add_date: Time.zone.today,
+        amount: 0
+      )
     end
 
     def edit; end
@@ -36,9 +39,10 @@ module ExpenseModule
 
     def update
       if @expense.update(expense_params)
-        redirect_to new_expense_module_expense_path, notice: "支出が更新されました。"
+        redirect_to expense_module_expenses_path, notice: "支出が更新されました。"
       else
-        render :edit
+        error = @expense.errors.full_messages.join(", ")
+        redirect_to edit_expense_module_expense_path, alert: error.to_s
       end
     end
 

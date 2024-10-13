@@ -1,8 +1,8 @@
-<%= form_with model: income, url: expense_module_incomes_path, local: true do |form| %>
+<%= form_with model: income, url: income.persisted? ? expense_module_income_path(income) : expense_module_incomes_path, local: true do |form| %>
   <div class="expense_category_form">
     <div class="expense_category_field">
       <%= form.label :add_date, "日付", class: "expense_label" %>
-      <%= form.date_field :add_date, value: Date.today, class: "expense_category_input", required: true %>
+      <%= form.date_field :add_date, class: "expense_category_input", required: true %>
     </div>
 
     <div class="expense_category_field">
@@ -15,13 +15,14 @@
 
       <div class="input_with_symbol">
         <span class="currency_symbol">¥</span>
-        <%= form.number_field :amount, class: "expense_category_input expected_amount", value: income.amount.to_i || 0, required: true %>
+        <%= form.number_field :amount, class: "expense_category_input expected_amount", required: true, value: income.amount.to_i %>
       </div>
     </div>
   </div>
 
   <%= form.hidden_field :user_id, value: current_user.id %>
+
   <div class="category_list_link">
-    <%= form.submit "追加", class: "category_common_btn" %>
+    <%= form.submit income.persisted? ? "更新" : "追加", class: "category_common_btn" %>
   </div>
 <% end %>
